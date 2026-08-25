@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — Parapente.pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_parapentepro.jpeg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+    <a href="index.html" class="nav-brand">
+        <img src="assets/logo_parapentepro.jpeg" alt="Logo">
+        <div>
+            <div class="nav-brand-text">Parapente.pro</div>
+            <div class="nav-brand-sub">École &amp; Progression APPI</div>
+        </div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="appi.html" class="nav-link">L'École (APPI)</a>
+        <a href="formations.html" class="nav-link">Formations</a>
+        <a href="pro.html" class="nav-link">Espace PRO</a>
+        <a href="calendrier.html" class="nav-link">Calendrier</a>
+        <a href="tarifs.html" class="nav-link">Tarifs</a>
+        <a href="contact.html" class="nav-link active btn btn-primary">Contact</a>
+    </div>
+</nav>
+
+<div class="page-container">
+
+    <header class="hero" style="background-image: url('assets/banner_appi.jpg'); padding: 60px 5%; filter: sepia(0.3) hue-rotate(-20deg);">
+        <div class="hero-content">
+            <h1 class="hero-title">Contactez-nous</h1>
+            <p class="hero-subtitle">Une question ? Une réservation ? Notre équipe est à votre écoute.</p>
+        </div>
+    </header>
+
+    <section class="section section-light">
+        <div class="grid-cards" style="grid-template-columns: 1fr 1fr; max-width: 1000px; margin: 0 auto; gap: 40px;">
+            
+            <!-- Informations de contact direct -->
+            <div class="card" style="box-shadow: none; border: none; background: transparent;">
+                <h2 class="section-title" style="text-align: left; margin-bottom: 24px;">Nos Coordonnées</h2>
+                
+                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                    <div style="background: var(--brand-orange-glow); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-orange); flex-shrink: 0;">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 4px; color: var(--text-white); font-family: var(--font-heading);">Téléphone / WhatsApp</h3>
+                        <p style="color: var(--text-muted);">+33 6 00 00 00 00</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                    <div style="background: var(--brand-blue-glow); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-blue); flex-shrink: 0;">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 4px; color: var(--text-white); font-family: var(--font-heading);">E-mail</h3>
+                        <p style="color: var(--text-muted);">contact@hautlesmains.fr</p>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                    <div style="background: var(--brand-gold-glow); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-gold); flex-shrink: 0;">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h3 style="margin-bottom: 4px; color: var(--text-white); font-family: var(--font-heading);">École (Lieu de RDV)</h3>
+                        <p style="color: var(--text-muted);">Lieu-dit Le Village<br>04330 Barrême, France</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire -->
+            <div class="card" style="padding: 32px;">
+                <h3 class="section-title" style="text-align: left; font-size: 1.5rem; margin-bottom: 24px;">Envoyez-nous un message</h3>
+                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');">
+                    <div class="form-group">
+                        <label class="form-label" for="nom">Nom & Prénom</label>
+                        <input type="text" id="nom" class="form-control" placeholder="Votre nom" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">E-mail</label>
+                        <input type="email" id="email" class="form-control" placeholder="votre@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="sujet">Sujet / Intérêt</label>
+                        <select id="sujet" class="form-control" required>
+                            <option value="">Sélectionnez un sujet...</option>
+                            <option value="stage_loisir">Renseignement - Stage Loisir</option>
+                            <option value="siv">Inscription - Stage SIV</option>
+                            <option value="pro">Candidature - Formation PRO</option>
+                            <option value="autre">Autre demande</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="Détaillez votre demande (niveau actuel, dates souhaitées...)" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-full" style="width: 100%;">Envoyer le message</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Parapente.pro</h4>
+            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Liens utiles</h4>
+            <ul>
+                <li><a href="appi.html">Le Système APPI</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="pro.html">Espace PRO</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Pratique</h4>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="tarifs.html">Tarifs</a></li>
+                <li><a href="contact.html">Contact & Accès</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Parapente.pro. Tous droits réservés.
+    </div>
+</footer>
+
+</body>
+</html>

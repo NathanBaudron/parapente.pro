@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parapente.pro — Progression</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_parapentepro.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pilot-selector {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 20px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .pilot-selector label {
+            font-size: 0.82rem; font-weight: 700; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
+        }
+        .pilot-selector select {
+            flex: 1; min-width: 220px;
+            background: var(--bg-input); border: 1px solid var(--border);
+            padding: 10px 14px;
+            font-size: 0.9rem; color: var(--text-white);
+            font-family: var(--font-body); outline: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237C8BA6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+        .pilot-selector select:focus { border-color: var(--brand-pink); }
+
+        .pilot-header {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            border: 1px solid var(--border);
+            padding: 24px 28px;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .pilot-header-avatar {
+            width: 60px; height: 60px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; font-weight: 800; font-family: var(--font-heading);
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+        .pilot-header-info { flex: 1; min-width: 220px; }
+        .pilot-header-name {
+            font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800;
+            color: var(--text-white); margin-bottom: 6px;
+            letter-spacing: -0.02em;
+        }
+        .pilot-header-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+        .pilot-header-meta span { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+        .pilot-header-stats { display: flex; gap: 24px; flex-shrink: 0; flex-wrap: wrap; }
+        .pilot-stat { text-align: center; }
+        .pilot-stat-val { font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--text-white); line-height: 1; }
+        .pilot-stat-lbl { font-size: 0.68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+
+        /* Level Tabs */
+        .level-tabs {
+            display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap;
+            background: var(--bg-input);
+            padding: 5px; border: 1px solid var(--border);
+        }
+        .level-tab {
+            flex: 1; min-width: 100px;
+            padding: 12px 14px; border: none;
+            background: transparent; color: var(--text-muted);
+            font-size: 0.85rem; font-weight: 600; cursor: pointer;
+            transition: all var(--transition);
+            display: flex; flex-direction: column; align-items: center; gap: 4px;
+            font-family: var(--font-body);
+        }
+        .level-tab:hover { color: var(--text-white); background: var(--bg-card-hover); }
+        .level-tab.active { background: var(--bg-card); color: var(--text-white); border: 1px solid var(--border); }
+        .level-tab .tab-pct { font-size: 0.7rem; opacity: 0.8; font-weight: 700; }
+
+        /* Notes & layout */
+        .notes-box {
+            background: var(--bg-input); border: 1px solid var(--border);
+            padding: 16px;
+            font-size: 0.88rem; color: var(--text-main); line-height: 1.6;
+            white-space: pre-wrap;
+        }
+
+        .delete-btn { color: #f43f5e; border-color: rgba(244, 63, 94, 0.2); }
+        .delete-btn:hover { background: var(--brand-red-glow); border-color: var(--brand-red); color: var(--text-white); }
+    </style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar" id="sidebar">
+    <a href="index.html" class="sidebar-brand">
+        <img src="assets/logo_parapentepro.jpeg" alt="Logo" style="width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; border: none !important;">
+        <div class="sidebar-brand-text">
+            <div class="sidebar-brand-title">parapente.pro</div>
+            <div class="sidebar-brand-sub">Progression APPI</div>
+        </div>
+    </a>
+    <div class="sidebar-nav">
+        <div class="sidebar-section-label">Principal</div>
+        <a href="index.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Éducation APPI
+        </a>
+        <a href="etudiants.html" class="sidebar-link instructor-only">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Pilotes
+            <span class="sidebar-badge" id="sb-count">0</span>
+        </a>
+        <a href="progression.html" class="sidebar-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Progression APPI
+        </a>
+        <div class="sidebar-section-label instructor-only">Niveaux</div>
+        <a href="etudiants.html?level=student"    class="sidebar-link instructor-only">Student</a>
+        <a href="etudiants.html?level=pilot"      class="sidebar-link instructor-only">Pilot</a>
+        <a href="etudiants.html?level=expert"     class="sidebar-link instructor-only">Expert</a>
+        <a href="etudiants.html?level=instructor" class="sidebar-link instructor-only">Instructor</a>
+        <a href="etudiants.html?level=master"     class="sidebar-link instructor-only">Master</a>
+    </div>
+    <div class="sidebar-footer">APPI Pro &copy; 2026<br><span style="color:var(--brand-pink);font-weight:600">Haut les Mains</span> — Barrême</div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+    <header class="topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="topbar-title">Progression APPI</span>
+        <div class="topbar-right">
+            <a href="etudiants.html" class="btn btn-secondary btn-sm instructor-only">← Retour aux pilotes</a>
+            <a href="index.html" class="btn btn-secondary btn-sm student-only">← Mon Espace</a>
+        </div>
+    </header>
+
+    <div class="page-content">
+
+        <!-- Sélecteur pilote (instructeur uniquement) -->
+        <div class="pilot-selector instructor-only" id="selectorContainer">
+            <label for="pilotSelect">Sélectionner un pilote :</label>
+            <select id="pilotSelect">
+                <option value="">— Sélectionner un pilote —</option>
+            </select>
+            <button class="btn btn-ghost btn-sm delete-btn" id="btnDelete" style="display:none">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+                Supprimer ce pilote
+            </button>
+        </div>
+
+        <!-- Aucun pilote sélectionné (instructeur uniquement) -->
+        <div id="noPilotMsg" class="instructor-only">
+            <div class="empty-state">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                <h3>Sélectionnez un pilote</h3>
+                <p>Choisissez un pilote dans la liste pour visualiser et éditer sa progression.</p>
+                <a href="etudiants.html" class="btn btn-primary btn-sm">Gérer les pilotes</a>
+            </div>
+        </div>
+
+        <!-- Fiche pilote -->
+        <div id="pilotDetail" style="display:none">
+
+            <!-- Header pilote -->
+            <div class="pilot-header" id="pilotHeaderBox"></div>
+
+            <!-- Progression globale -->
+            <div class="card mb-4" style="margin-bottom:24px">
+                <div class="card-header">
+                    <span class="card-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        Suivi global des niveaux APPI
+                    </span>
+                </div>
+                <div class="card-body" id="globalProgressBars" style="display:flex;flex-direction:column;gap:14px"></div>
+            </div>
+
+            <!-- Tabs niveaux -->
+            <div class="level-tabs" id="levelTabs"></div>
+
+            <!-- Sections d'exercices -->
+            <div class="card">
+                <div class="card-body" id="exerciseSections"></div>
+            </div>
+
+            <!-- Notes -->
+            <div class="card" style="margin-top:24px" id="notesCard">
+                <div class="card-header">
+                    <span class="card-title">Notes de formation</span>
+                    <button class="btn btn-ghost btn-sm instructor-only" id="btnEditLevel">Changer le niveau de l'élève</button>
+                </div>
+                <div class="card-body">
+                    <div class="notes-box" id="notesContent">Aucune note.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="app.js"></script>
+<script>
+let currentPiloteId = null;
+let activeTab = 'student';
+
+const levelImages = {
+    student: 'assets/lvl_student.jpg',
+    pilot: 'assets/lvl_pilot.jpg',
+    expert: 'assets/lvl_expert.jpg',
+    instructor: 'assets/lvl_instructor.jpg',
+    master: 'assets/lvl_master.jpg'
+};
+
+function populateSelect() {
+    const data = loadData();
+    const sel = document.getElementById('pilotSelect');
+    if (!sel) return;
+    const saved = sel.value;
+    sel.innerHTML = '<option value="">— Sélectionner un pilote —</option>';
+    (data.pilotes || []).forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = `${p.prenom} ${p.nom} — ${APPI_LEVELS[p.niveau]?.label || p.niveau}`;
+        sel.appendChild(opt);
+    });
+    document.getElementById('sb-count').textContent = (data.pilotes || []).length;
+    if (saved) sel.value = saved;
+}
+
+function loadPilot(id) {
+    const data = loadData();
+    const p = data.pilotes.find(x => x.id == id);
+    if (!p) return;
+    currentPiloteId = p.id;
+
+    if (getCurrentRole() === 'instructor') {
+        document.getElementById('noPilotMsg').style.display = 'none';
+        document.getElementById('btnDelete').style.display = 'inline-flex';
+    }
+    
+    document.getElementById('pilotDetail').style.display = 'block';
+
+    const g   = getGlobalProgress(p);
+    const lp  = getPiloteProgress(p);
+    const lvl = APPI_LEVELS[p.niveau] || APPI_LEVELS.student;
+    const col = avatarColor((data.pilotes.indexOf(p)));
+
+    // Header
+    document.getElementById('pilotHeaderBox').innerHTML = `
+        <div class="pilot-header-avatar avatar-${col}" style="width:60px;height:60px;font-size:1.1rem">${initials(p.nom, p.prenom)}</div>
+        <div class="pilot-header-info">
+            <div class="pilot-header-name">${p.prenom} ${p.nom}</div>
+            <div class="pilot-header-meta">
+                <span>${p.email ? '📧 ' + p.email : ''}</span>
+                <span>${p.tel ? '📞 ' + p.tel : ''}</span>
+                <span class="badge ${lvl.badgeClass}">${lvl.label}</span>
+            </div>
+        </div>
+        <div class="pilot-header-stats">
+            <div class="pilot-stat"><div class="pilot-stat-val">${g.done}</div><div class="pilot-stat-lbl">Exercices validés</div></div>
+            <div class="pilot-stat"><div class="pilot-stat-val">${g.pct}%</div><div class="pilot-stat-lbl">Global</div></div>
+            <div class="pilot-stat"><div class="pilot-stat-val">${lp[p.niveau]?.pct || 0}%</div><div class="pilot-stat-lbl">Niveau actuel</div></div>
+        </div>`;
+
+    // Barres de progression globales
+    const pbEl = document.getElementById('globalProgressBars');
+    pbEl.innerHTML = Object.entries(APPI_LEVELS).map(([key, l]) => `
+        <div style="display:flex;align-items:center;gap:12px">
+            <span style="width:80px;font-size:0.78rem;font-weight:600;color:${key===p.niveau?'var(--text-white)':'var(--text-muted)'}">${l.label}</span>
+            <div class="progress-bar-bg" style="flex:1;height:8px"><div class="progress-bar-fill ${l.color}" style="width:${lp[key]?.pct||0}%;height:8px"></div></div>
+            <span class="progress-pct">${lp[key]?.pct||0}%</span>
+            <span style="font-size:0.75rem;color:var(--text-muted);width:50px;text-align:right">${lp[key]?.done||0}/${lp[key]?.total||0}</span>
+        </div>`).join('');
+
+    // Tabs
+    const tabsEl = document.getElementById('levelTabs');
+    tabsEl.innerHTML = Object.entries(APPI_LEVELS).map(([key, l]) =>
+        `<button class="level-tab ${key===activeTab?'active':''}" data-tab="${key}">
+            <span>${l.label}</span>
+            <span class="tab-pct">${lp[key]?.pct||0}%</span>
+        </button>`).join('');
+    tabsEl.querySelectorAll('.level-tab').forEach(btn =>
+        btn.addEventListener('click', () => {
+            activeTab = btn.dataset.tab;
+            tabsEl.querySelectorAll('.level-tab').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderExercices(p);
+        })
+    );
+
+    renderExercices(p);
+
+    // Notes
+    document.getElementById('notesContent').textContent = p.notes || 'Aucune note de formation disponible.';
+
+    // Changer de niveau (instructeur uniquement)
+    const btnEditLevel = document.getElementById('btnEditLevel');
+    if (btnEditLevel) {
+        btnEditLevel.onclick = () => {
+            const newLvl = prompt('Saisir le nouveau niveau APPI du pilote :\nstudent | pilot | expert | instructor | master', p.niveau);
+            if (!newLvl || !APPI_LEVELS[newLvl]) return;
+            const d = loadData();
+            const idx = d.pilotes.findIndex(x => x.id == p.id);
+            if (idx !== -1) {
+                d.pilotes[idx].niveau = newLvl;
+                saveData(d);
+                showToast('Niveau de certification mis à jour.');
+                loadPilot(p.id);
+                populateSelect();
+            }
+        };
+    }
+}
+
+function renderExercices(p) {
+    const secEl = document.getElementById('exerciseSections');
+    const exos  = APPI_EXERCISES[activeTab] || [];
+    const done  = p.exercices?.[activeTab] || [];
+    const lvl   = APPI_LEVELS[activeTab];
+    const pct   = exos.length > 0 ? Math.round((done.length / exos.length) * 100) : 0;
+    const isInstructor = getCurrentRole() === 'instructor';
+    const bgImg = levelImages[activeTab] || 'assets/lvl_student.jpg';
+
+    secEl.innerHTML = `
+        <!-- Bannière photo du niveau -->
+        <div style="height: 160px; overflow: hidden; position: relative; margin-bottom: 24px; border: 1px solid var(--border);">
+            <div style="position: absolute; inset: 0; background-image: url('${bgImg}'); background-size: cover; background-position: center; filter: brightness(0.65);"></div>
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent, rgba(15, 23, 42, 0.9));"></div>
+        </div>
+
+        <div class="exo-header">
+            <div class="exo-header-left">
+                <div>
+                    <div class="exo-header-title">Exercices — ${lvl.label}</div>
+                    <div class="exo-header-sub">${done.length} / ${exos.length} validé(s)</div>
+                </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px">
+                <div class="progress-wrap" style="min-width:140px">
+                    <div class="progress-bar-bg" style="height:8px"><div class="progress-bar-fill ${lvl.color}" style="width:${pct}%;height:8px"></div></div>
+                    <span class="progress-pct">${pct}%</span>
+                </div>
+                ${isInstructor ? `<button class="btn btn-secondary btn-sm" id="btnResetLevel">Réinitialiser</button>` : ''}
+            </div>
+        </div>
+        <div class="exo-list">
+        ${exos.map(ex => {
+            const isDone = done.includes(ex.id);
+            return `<div class="exercise-item">
+                <div class="exercise-check ${isDone?'done':''}" data-exo="${ex.id}" title="${isInstructor ? (isDone?'Marquer non validé':'Valider cet exercice') : 'Mode lecture seule'}"></div>
+                <div class="exercise-text">
+                    <div class="exercise-name ${isDone?'done':''}">${ex.name}</div>
+                    <div class="exercise-desc">${ex.desc}</div>
+                </div>
+                <span class="badge ${isDone ? lvl.badgeClass : ''}" style="${isDone?'':'opacity:0.15'}">${isDone?'✓ Validé':'—'}</span>
+            </div>`;
+        }).join('')}
+        </div>`;
+
+    // Validation des exercices (instructeur uniquement)
+    if (isInstructor) {
+        secEl.querySelectorAll('.exercise-check').forEach(box => {
+            box.addEventListener('click', () => {
+                const exoId = box.dataset.exo;
+                const d = loadData();
+                const idx = d.pilotes.findIndex(x => x.id == currentPiloteId);
+                if (idx === -1) return;
+                if (!d.pilotes[idx].exercices) d.pilotes[idx].exercices = {};
+                if (!d.pilotes[idx].exercices[activeTab]) d.pilotes[idx].exercices[activeTab] = [];
+                const list = d.pilotes[idx].exercices[activeTab];
+                const pos = list.indexOf(exoId);
+                if (pos === -1) {
+                    list.push(exoId);
+                    showToast('Exercice validé ✓', 'success');
+                } else {
+                    list.splice(pos, 1);
+                    showToast('Exercice retiré', 'info');
+                }
+                saveData(d);
+                loadPilot(currentPiloteId);
+            });
+        });
+
+        // Reset
+        const btnResetLevel = document.getElementById('btnResetLevel');
+        if (btnResetLevel) {
+            btnResetLevel.addEventListener('click', () => {
+                if (!confirm(`Réinitialiser tous les exercices ${lvl.label} pour ce pilote ?`)) return;
+                const d = loadData();
+                const idx = d.pilotes.findIndex(x => x.id == currentPiloteId);
+                if (idx !== -1) {
+                    if (!d.pilotes[idx].exercices) d.pilotes[idx].exercices = {};
+                    d.pilotes[idx].exercices[activeTab] = [];
+                    saveData(d);
+                    showToast('Exercices réinitialisés.', 'info');
+                    loadPilot(currentPiloteId);
+                }
+            });
+        }
+    }
+}
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    const role = getCurrentRole();
+    
+    if (role === 'instructor') {
+        populateSelect();
+
+        // URL parsing
+        const urlId = new URLSearchParams(location.search).get('id');
+        if (urlId) {
+            const selectEl = document.getElementById('pilotSelect');
+            if (selectEl) {
+                selectEl.value = urlId;
+                loadPilot(parseInt(urlId));
+            }
+        }
+
+        document.getElementById('pilotSelect').addEventListener('change', e => {
+            if (e.target.value) {
+                loadPilot(parseInt(e.target.value));
+                history.replaceState({}, '', `?id=${e.target.value}`);
+            } else {
+                currentPiloteId = null;
+                document.getElementById('noPilotMsg').style.display = 'block';
+                document.getElementById('pilotDetail').style.display = 'none';
+                document.getElementById('btnDelete').style.display = 'none';
+            }
+        });
+
+        document.getElementById('btnDelete').addEventListener('click', () => {
+            if (!currentPiloteId) return;
+            const d = loadData();
+            const p = d.pilotes.find(x => x.id == currentPiloteId);
+            if (!confirm(`Supprimer définitivement le pilote ${p?.prenom} ${p?.nom} ?`)) return;
+            d.pilotes = d.pilotes.filter(x => x.id != currentPiloteId);
+            saveData(d);
+            showToast('Pilote supprimé de la base.', 'info');
+            currentPiloteId = null;
+            document.getElementById('pilotSelect').value = '';
+            document.getElementById('noPilotMsg').style.display = 'block';
+            document.getElementById('pilotDetail').style.display = 'none';
+            document.getElementById('btnDelete').style.display = 'none';
+            populateSelect();
+            history.replaceState({}, '', 'progression.html');
+        });
+    } else {
+        // Mode élève : chargement automatique
+        const activeStudentId = getSelectedStudentId();
+        const d = loadData();
+        const p = d.pilotes.find(x => x.id === activeStudentId) || d.pilotes[0];
+        if (p) {
+            activeTab = p.niveau; // charge le niveau actif par défaut
+            loadPilot(p.id);
+        } else {
+            document.getElementById('pilotDetail').style.display = 'none';
+            document.getElementById('notesCard').style.display = 'none';
+        }
+    }
+});
+</script>
+</body>
+</html>

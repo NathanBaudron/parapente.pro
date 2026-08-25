@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Système APPI — Parapente.pro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_parapentepro.jpeg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+    <a href="index.html" class="nav-brand">
+        <img src="assets/logo_parapentepro.jpeg" alt="Logo">
+        <div>
+            <div class="nav-brand-text">Parapente.pro</div>
+            <div class="nav-brand-sub">École &amp; Progression APPI</div>
+        </div>
+    </a>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-links">
+        <a href="index.html" class="nav-link">Accueil</a>
+        <a href="appi.html" class="nav-link active">L'École (APPI)</a>
+        <a href="formations.html" class="nav-link">Formations</a>
+        <a href="pro.html" class="nav-link">Espace PRO</a>
+        <a href="calendrier.html" class="nav-link">Calendrier</a>
+        <a href="tarifs.html" class="nav-link">Tarifs</a>
+        <a href="contact.html" class="nav-link btn btn-primary">Contact</a>
+    </div>
+</nav>
+
+<div class="page-container">
+
+    <!-- ── HERO BANNER ── -->
+    <header class="hero" style="background-image: url('assets/lvl_expert.jpg'); padding: 60px 5%;">
+        <div class="hero-content">
+            <h1 class="hero-title">Le Système Éducatif APPI</h1>
+            <p class="hero-subtitle">Une progression internationale, standardisée et sécurisée.</p>
+        </div>
+    </header>
+
+    <!-- ── CONTENU ── -->
+    <section class="section">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 class="section-title">Qu'est-ce que la formation APPI ?</h2>
+            <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 24px;">
+                APPI (Association of Paragliding Pilots and Instructors) est une organisation internationale qui propose un système de certification et d'enseignement standardisé pour le vol libre. 
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 24px;">
+                Ce cursus garantit que le pilote acquiert des compétences solides, tant théoriques que pratiques, à chaque étape de sa progression. Ces certifications sont reconnues dans le monde entier, facilitant la location de matériel ou la pratique à l'étranger.
+            </p>
+
+            <h2 class="section-title" style="margin-top: 60px;">Les Niveaux de Progression</h2>
+            
+            <div class="grid-cards" style="grid-template-columns: 1fr; gap: 24px;">
+                <div class="card" style="flex-direction: row; align-items: center;">
+                    <div class="card-img" style="width: 150px; height: 150px; background-image: url('assets/lvl_student.jpg'); border-radius: 50%; margin: 24px;"></div>
+                    <div class="card-content" style="padding-left: 0;">
+                        <h3 class="card-title" style="color: var(--brand-orange);">Open Sky / Adventure Pilot (Student)</h3>
+                        <p class="card-desc">Initiation, découverte du matériel, gonflage et premiers grands vols encadrés par radio.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="flex-direction: row; align-items: center;">
+                    <div class="card-img" style="width: 150px; height: 150px; background-image: url('assets/lvl_pilot.jpg'); border-radius: 50%; margin: 24px;"></div>
+                    <div class="card-content" style="padding-left: 0;">
+                        <h3 class="card-title" style="color: var(--brand-blue);">APPI Pilot</h3>
+                        <p class="card-desc">L'autonomie sur site connu. Vous validez vos connaissances théoriques, l'analyse météo et les approches.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="flex-direction: row; align-items: center;">
+                    <div class="card-img" style="width: 150px; height: 150px; background-image: url('assets/lvl_expert.jpg'); border-radius: 50%; margin: 24px;"></div>
+                    <div class="card-content" style="padding-left: 0;">
+                        <h3 class="card-title" style="color: var(--brand-gold);">Advanced Pilot (Expert)</h3>
+                        <p class="card-desc">Vol de distance (Cross), exploitation des thermiques, maîtrise des techniques de descente rapide (SIV).</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="formations.html" class="btn btn-primary">Voir nos Formations</a>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h4>Parapente.pro</h4>
+            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Liens utiles</h4>
+            <ul>
+                <li><a href="appi.html">Le Système APPI</a></li>
+                <li><a href="formations.html">Formations</a></li>
+                <li><a href="pro.html">Espace PRO</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4>Pratique</h4>
+            <ul>
+                <li><a href="calendrier.html">Calendrier</a></li>
+                <li><a href="tarifs.html">Tarifs</a></li>
+                <li><a href="contact.html">Contact & Accès</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 Parapente.pro. Tous droits réservés.
+    </div>
+</footer>
+
+</body>
+</html>

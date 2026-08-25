@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parapente.pro — Pilotes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_parapentepro.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .search-bar {
+            display: flex; gap: 12px; align-items: center; margin-bottom: 24px; flex-wrap: wrap;
+        }
+        .search-input-wrap {
+            position: relative; flex: 1; min-width: 240px;
+        }
+        .search-input-wrap svg {
+            position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+            color: var(--text-muted); pointer-events: none;
+        }
+        .search-input-wrap input {
+            width: 100%;
+            background: var(--bg-input); border: 1px solid var(--border);
+            padding: 11px 15px 11px 42px;
+            font-size: 0.9rem; color: var(--text-white); outline: none;
+            transition: border-color var(--transition);
+            font-family: var(--font-body);
+        }
+        .search-input-wrap input:focus { border-color: var(--brand-pink); }
+        .search-input-wrap input::placeholder { color: var(--text-dim); }
+
+        .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; }
+        .filter-pill {
+            padding: 8px 16px; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg-input);
+            color: var(--text-muted); transition: all var(--transition);
+            font-family: var(--font-body);
+        }
+        .filter-pill:hover { border-color: var(--border-light); color: var(--text-white); }
+        .filter-pill.active { background: var(--brand-pink-glow); border-color: var(--brand-pink); color: var(--brand-pink); }
+
+        .pilots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        .pilot-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 24px;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            display: block;
+        }
+        .pilot-card:hover {
+            border-color: var(--border-light);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+        .pilot-card-top {
+            display: flex; align-items: center; gap: 14px; margin-bottom: 16px;
+        }
+        .pilot-avatar {
+            width: 48px; height: 48px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; font-weight: 800; font-family: var(--font-heading);
+            flex-shrink: 0;
+        }
+        .pilot-name {
+            font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem;
+            color: var(--text-white); margin-bottom: 4px;
+        }
+        .pilot-meta { font-size: 0.78rem; color: var(--text-muted); }
+        .pilot-card-footer {
+            border-top: 1px solid var(--border); padding-top: 14px; margin-top: 14px;
+            display: flex; gap: 10px; align-items: center;
+        }
+        .pilot-exo-count { font-size: 0.78rem; color: var(--text-muted); margin-left: auto; }
+    </style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar" id="sidebar">
+    <a href="index.html" class="sidebar-brand">
+        <img src="assets/logo_parapentepro.jpeg" alt="Logo" style="width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; border: none !important;">
+        <div class="sidebar-brand-text">
+            <div class="sidebar-brand-title">parapente.pro</div>
+            <div class="sidebar-brand-sub">Progression APPI</div>
+        </div>
+    </a>
+    <div class="sidebar-nav">
+        <div class="sidebar-section-label">Principal</div>
+        <a href="index.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Éducation APPI
+        </a>
+        <a href="etudiants.html" class="sidebar-link active instructor-only">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Pilotes
+            <span class="sidebar-badge" id="sb-count">0</span>
+        </a>
+        <a href="progression.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Progression APPI
+        </a>
+        <div class="sidebar-section-label instructor-only">Niveaux</div>
+        <a href="etudiants.html?level=student"    class="sidebar-link instructor-only">Student</a>
+        <a href="etudiants.html?level=pilot"      class="sidebar-link instructor-only">Pilot</a>
+        <a href="etudiants.html?level=expert"     class="sidebar-link instructor-only">Expert</a>
+        <a href="etudiants.html?level=instructor" class="sidebar-link instructor-only">Instructor</a>
+        <a href="etudiants.html?level=master"     class="sidebar-link instructor-only">Master</a>
+    </div>
+    <div class="sidebar-footer">APPI Pro &copy; 2026<br><span style="color:var(--brand-pink);font-weight:600">Haut les Mains</span> — Barrême</div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+    <header class="topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="topbar-title">Gestion des Pilotes</span>
+        <div class="topbar-right">
+            <button class="btn btn-primary btn-sm instructor-only" id="btnAddPilot">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Nouveau pilote
+            </button>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <!-- Message de blocage si élève connecté -->
+        <div id="studentBlockMessage" class="student-only" style="display:none">
+            <div class="empty-state">
+                <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                <h3>Accès Restreint</h3>
+                <p>En tant qu'élève, tu n'as pas accès à la liste globale des pilotes. Utilise ton tableau de bord personnel pour voir ta propre progression.</p>
+                <a href="index.html" class="btn btn-primary btn-sm">Mon Espace Élève</a>
+            </div>
+        </div>
+
+        <!-- Interface Instructeur -->
+        <div class="instructor-only" id="instructorInterface">
+            <!-- Recherche & filtres -->
+            <div class="search-bar">
+                <div class="search-input-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="searchInput" placeholder="Rechercher un pilote…">
+                </div>
+                <div class="filter-pills" id="filterPills">
+                    <button class="filter-pill active" data-level="all">Tous</button>
+                    <button class="filter-pill" data-level="student">Student</button>
+                    <button class="filter-pill" data-level="pilot">Pilot</button>
+                    <button class="filter-pill" data-level="expert">Expert</button>
+                    <button class="filter-pill" data-level="instructor">Instructor</button>
+                    <button class="filter-pill" data-level="master">Master</button>
+                </div>
+            </div>
+
+            <!-- Grille pilotes -->
+            <div class="pilots-grid" id="pilotsGrid"></div>
+            <div id="emptyState" style="display:none">
+                <div class="empty-state">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    <h3>Aucun pilote trouvé</h3>
+                    <p>Ajoutez un premier pilote ou modifiez votre recherche.</p>
+                    <button class="btn btn-primary btn-sm" id="btnAddEmpty">Ajouter un pilote</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ MODAL Ajout Pilote ═══ -->
+<div class="modal-overlay" id="modalAdd">
+    <div class="modal">
+        <div class="modal-header">
+            <span class="modal-title" id="modalAddTitle">Nouveau Pilote</span>
+            <button class="modal-close" id="modalClose">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="editId">
+            <div class="grid-2" style="gap:12px">
+                <div class="form-group" style="margin-bottom:0">
+                    <label class="form-label">Prénom *</label>
+                    <input type="text" class="form-control" id="fPrenom" placeholder="Lucas">
+                </div>
+                <div class="form-group" style="margin-bottom:0">
+                    <label class="form-label">Nom *</label>
+                    <input type="text" class="form-control" id="fNom" placeholder="Martin">
+                </div>
+            </div>
+            <div class="form-group mt-4">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="fEmail" placeholder="lucas.martin@example.com">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Téléphone</label>
+                <input type="tel" class="form-control" id="fTel" placeholder="06 87 65 43 21">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Niveau APPI actuel</label>
+                <select class="form-control" id="fNiveau">
+                    <option value="student">Student</option>
+                    <option value="pilot">Pilot</option>
+                    <option value="expert">Expert</option>
+                    <option value="instructor">Instructor</option>
+                    <option value="master">Master</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Notes de suivi</label>
+                <textarea class="form-control" id="fNotes" rows="3" placeholder="Informations particulières, matériel, objectifs…" style="resize:vertical"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" id="btnCancelModal">Annuler</button>
+            <button class="btn btn-primary" id="btnSaveModal">Enregistrer</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="app.js"></script>
+<script>
+let activeFilter = new URLSearchParams(location.search).get('level') || 'all';
+let editingId = null;
+
+// Bloque si élève
+if (getCurrentRole() === 'student') {
+    document.getElementById('studentBlockMessage').style.display = 'block';
+    document.getElementById('instructorInterface').style.display = 'none';
+}
+
+// Active le bon filtre depuis l'URL
+document.querySelectorAll('.filter-pill').forEach(p => {
+    if (p.dataset.level === activeFilter) p.classList.add('active');
+    else p.classList.remove('active');
+});
+
+function render() {
+    const data  = loadData();
+    const q     = document.getElementById('searchInput').value.toLowerCase();
+    let pilotes = data.pilotes || [];
+
+    document.getElementById('sb-count').textContent = pilotes.length;
+
+    if (activeFilter !== 'all') pilotes = pilotes.filter(p => p.niveau === activeFilter);
+    if (q) pilotes = pilotes.filter(p =>
+        (p.prenom + ' ' + p.nom).toLowerCase().includes(q) ||
+        (p.email || '').toLowerCase().includes(q)
+    );
+
+    const grid = document.getElementById('pilotsGrid');
+    const empty = document.getElementById('emptyState');
+
+    if (!pilotes.length) {
+        grid.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+
+    grid.innerHTML = pilotes.map((p, i) => {
+        const g   = getGlobalProgress(p);
+        const lvl = APPI_LEVELS[p.niveau] || APPI_LEVELS.student;
+        const col = avatarColor(data.pilotes.indexOf(p));
+        const lp  = getPiloteProgress(p);
+        const lvlPct = lp[p.niveau]?.pct || 0;
+        return `<div class="pilot-card" onclick="location.href='progression.html?id=${p.id}'">
+            <div class="pilot-card-top">
+                <div class="pilot-avatar avatar-${col}">${initials(p.nom, p.prenom)}</div>
+                <div style="flex:1;min-width:0">
+                    <div class="pilot-name">${p.prenom} ${p.nom}</div>
+                    <div class="pilot-meta">${p.email || 'Pas d\'email'}</div>
+                </div>
+                <button class="btn btn-ghost btn-icon" onclick="event.stopPropagation();openEdit(${p.id})" title="Modifier" style="flex-shrink:0">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                </button>
+            </div>
+            <div style="margin-bottom:10px">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">
+                    <span class="badge ${lvl.badgeClass}">${lvl.label}</span>
+                    <span style="font-size:0.72rem;color:var(--text-muted)">Niveau actuel</span>
+                </div>
+                <div class="progress-wrap">
+                    <div class="progress-bar-bg" style="height:7px"><div class="progress-bar-fill ${lvl.color}" style="width:${lvlPct}%;height:7px"></div></div>
+                    <span class="progress-pct">${lvlPct}%</span>
+                </div>
+            </div>
+            <div class="pilot-card-footer">
+                <span style="font-size:0.75rem;color:var(--text-muted)">Global</span>
+                <div class="progress-wrap" style="flex:1">
+                    <div class="progress-bar-bg" style="height:4px"><div class="progress-bar-fill sky" style="width:${g.pct}%;height:4px"></div></div>
+                </div>
+                <span class="pilot-exo-count">${g.done}/${g.total} exo.</span>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+// Filtres
+document.getElementById('filterPills').addEventListener('click', e => {
+    const btn = e.target.closest('.filter-pill');
+    if (!btn) return;
+    activeFilter = btn.dataset.level;
+    document.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+});
+
+document.getElementById('searchInput').addEventListener('input', render);
+
+// Modal Management
+function openAdd() {
+    editingId = null;
+    document.getElementById('modalAddTitle').textContent = 'Nouveau Pilote';
+    document.getElementById('editId').value = '';
+    ['fPrenom','fNom','fEmail','fTel','fNotes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('fNiveau').value = 'student';
+    document.getElementById('modalAdd').classList.add('open');
+    document.getElementById('fPrenom').focus();
+}
+
+function openEdit(id) {
+    const data = loadData();
+    const p = data.pilotes.find(x => x.id === id);
+    if (!p) return;
+    editingId = id;
+    document.getElementById('modalAddTitle').textContent = 'Modifier le Pilote';
+    document.getElementById('editId').value = id;
+    document.getElementById('fPrenom').value = p.prenom || '';
+    document.getElementById('fNom').value    = p.nom || '';
+    document.getElementById('fEmail').value  = p.email || '';
+    document.getElementById('fTel').value    = p.tel || '';
+    document.getElementById('fNiveau').value = p.niveau || 'student';
+    document.getElementById('fNotes').value  = p.notes || '';
+    document.getElementById('modalAdd').classList.add('open');
+}
+
+function closeModal() { document.getElementById('modalAdd').classList.remove('open'); }
+
+document.getElementById('btnAddPilot').addEventListener('click', openAdd);
+document.getElementById('btnAddEmpty')?.addEventListener('click', openAdd);
+document.getElementById('modalClose').addEventListener('click', closeModal);
+document.getElementById('btnCancelModal').addEventListener('click', closeModal);
+document.getElementById('modalAdd').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+
+document.getElementById('btnSaveModal').addEventListener('click', () => {
+    const prenom = document.getElementById('fPrenom').value.trim();
+    const nom    = document.getElementById('fNom').value.trim();
+    if (!prenom || !nom) { showToast('Le prénom et le nom sont obligatoires.', 'error'); return; }
+
+    const data = loadData();
+    if (editingId) {
+        const idx = data.pilotes.findIndex(p => p.id === editingId);
+        if (idx !== -1) {
+            data.pilotes[idx] = { ...data.pilotes[idx],
+                prenom, nom,
+                email:  document.getElementById('fEmail').value.trim(),
+                tel:    document.getElementById('fTel').value.trim(),
+                niveau: document.getElementById('fNiveau').value,
+                notes:  document.getElementById('fNotes').value.trim(),
+            };
+            showToast(`${prenom} ${nom} mis à jour.`);
+        }
+    } else {
+        data.pilotes.push({
+            id: data.nextId++,
+            prenom, nom,
+            email:  document.getElementById('fEmail').value.trim(),
+            tel:    document.getElementById('fTel').value.trim(),
+            niveau: document.getElementById('fNiveau').value,
+            notes:  document.getElementById('fNotes').value.trim(),
+            exercices: {},
+            dateAjout: new Date().toISOString(),
+        });
+        showToast(`${prenom} ${nom} ajouté avec succès.`);
+    }
+    saveData(data);
+    closeModal();
+    render();
+});
+
+render();
+</script>
+</body>
+</html>

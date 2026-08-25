@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parapente.pro — Connexion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_parapentepro.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: block !important;
+            margin: 0;
+            padding: 0;
+            background: var(--bg-base);
+        }
+        .login-wrapper {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-base);
+            padding: 20px;
+        }
+        .login-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            width: 100%;
+            max-width: 420px;
+            padding: 40px;
+            box-shadow: var(--shadow-md);
+        }
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        .login-logo {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--brand-pink) 0%, var(--brand-gold) 100%);
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-bottom: 16px;
+        }
+        .login-logo svg { color: white; }
+        .login-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-white);
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+        }
+        .login-subtitle {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+        .demo-accounts {
+            margin-top: 24px;
+            background: var(--bg-base);
+            border: 1px solid var(--border);
+            padding: 16px;
+            font-size: 0.78rem;
+        }
+        .demo-accounts h4 {
+            color: var(--text-white);
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+        .demo-accounts table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text-main);
+        }
+        .demo-accounts td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+        .demo-accounts code {
+            font-family: monospace;
+            background: #E2E8F0;
+            padding: 1px 4px;
+            color: var(--text-white);
+        }
+        .remember-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            font-size: 0.85rem;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            color: var(--text-main);
+        }
+        .checkbox-container input {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-wrapper">
+    <div class="login-card">
+        <div class="login-header">
+            <img src="assets/logo_parapentepro.jpeg" alt="Logo" style="width: 64px; height: 64px; object-fit: contain; margin-bottom: 16px; border: none !important;">
+            <h2 class="login-title">Connexion parapente.pro</h2>
+            <p class="login-subtitle">Accédez à votre espace de suivi de progression</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label class="form-label" for="email">Identifiant / Email</label>
+                <input type="text" id="email" class="form-control" placeholder="nom@exemple.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="form-label" for="password">Mot de passe</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required>
+            </div>
+
+            <div class="remember-wrap">
+                <label class="checkbox-container">
+                    <input type="checkbox" id="rememberMe">
+                    <span>Se souvenir de moi</span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-full text-center" style="display:block;">Se connecter</button>
+        </form>
+
+        <!-- Comptes de démonstration -->
+        <div class="demo-accounts">
+            <h4>Comptes de Démonstration</h4>
+            <table>
+                <tr>
+                    <td style="font-weight:700; width:90px;">Instructeur :</td>
+                    <td><code>henry@parapente.pro</code><br>MDP : <code>admin123</code></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;">Élève Lucas :</td>
+                    <td><code>lucas.martin@example.com</code><br>MDP : <code>student123</code></td>
+                </tr>
+                <tr>
+                    <td style="font-weight:700;">Élève Sarah :</td>
+                    <td><code>sarah.b@example.com</code><br>MDP : <code>student123</code></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="app.js"></script>
+<script>
+// Redirection immédiate si déjà connecté
+if (getCurrentUser()) {
+    location.href = 'dashboard.html';
+}
+
+function handleLogin(e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const rememberMe = document.getElementById('rememberMe').checked;
+
+    try {
+        const user = login(email, password, rememberMe);
+        showToast(`Bienvenue, ${user.prenom} ! Redirect...`, 'success');
+        setTimeout(() => {
+            location.href = 'dashboard.html';
+        }, 800);
+    } catch (err) {
+        showToast(err.message, 'error');
+    }
+}
+</script>
+</body>
+</html>

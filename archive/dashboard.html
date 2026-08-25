@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>parapente.pro — Espace de Suivi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_parapentepro.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .level-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .level-row:last-child { border-bottom: none; }
+        .level-info { flex: 1; min-width: 0; }
+        .level-name { font-size: 0.88rem; font-weight: 700; color: var(--text-white); margin-bottom: 5px; }
+
+        /* Student Dashboard Specific styles */
+        .student-profile-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
+            border: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .student-card-avatar {
+            width: 64px; height: 64px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; font-weight: 800; font-family: var(--font-heading);
+            border: 1px solid var(--border);
+        }
+        .student-level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .level-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 16px;
+            transition: all var(--transition);
+        }
+        .level-card.active-level {
+            border-color: var(--brand-pink);
+            background: var(--brand-pink-glow);
+        }
+        .level-card-top {
+            display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+        }
+        .level-card-title {
+            font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--text-white);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar" id="sidebar">
+    <a href="index.html" class="sidebar-brand">
+        <img src="assets/logo_parapentepro.jpeg" alt="Logo" style="width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; border: none !important;">
+        <div class="sidebar-brand-text">
+            <div class="sidebar-brand-title">parapente.pro</div>
+            <div class="sidebar-brand-sub">Progression APPI</div>
+        </div>
+    </a>
+
+    <div class="sidebar-nav">
+        <div class="sidebar-section-label">Principal</div>
+        <a href="index.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Éducation APPI
+        </a>
+        <a href="dashboard.html" class="sidebar-link active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Espace Suivi
+        </a>
+        <a href="etudiants.html" class="sidebar-link instructor-only">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Pilotes
+            <span class="sidebar-badge" id="sb-count">0</span>
+        </a>
+        <a href="progression.html" class="sidebar-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Progression APPI
+        </a>
+
+        <div class="sidebar-section-label instructor-only">Niveaux</div>
+        <a href="etudiants.html?level=student" class="sidebar-link instructor-only">Student</a>
+        <a href="etudiants.html?level=pilot" class="sidebar-link instructor-only">Pilot</a>
+        <a href="etudiants.html?level=expert" class="sidebar-link instructor-only">Expert</a>
+        <a href="etudiants.html?level=instructor" class="sidebar-link instructor-only">Instructor</a>
+        <a href="etudiants.html?level=master" class="sidebar-link instructor-only">Master</a>
+    </div>
+
+    <div class="sidebar-footer">
+        APPI Pro &copy; 2026<br>
+        <span style="color:var(--brand-pink); font-weight:600;">Haut les Mains</span> — Barrême
+    </div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<div class="main">
+
+    <!-- Topbar -->
+    <header class="topbar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="topbar-title" id="page-title">Espace de Suivi</span>
+        <div class="topbar-right">
+            <span class="text-muted" id="topbar-date" style="font-size:0.8rem"></span>
+            <a href="etudiants.html" class="btn btn-primary btn-sm instructor-only">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Nouveau pilote
+            </a>
+        </div>
+    </header>
+
+    <!-- Page content -->
+    <div class="page-content">
+
+        <!-- ══════════════════════════════════════
+             DASHBOARD INSTRUCTEUR
+        ══════════════════════════════════════ -->
+        <div id="instructor-dashboard" class="instructor-only">
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <span class="stat-label">Pilotes enregistrés</span>
+                        <div class="stat-icon brand-pink">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-pilotes">0</div>
+                    <div class="stat-sub" id="stat-pilotes-sub">0 élève actif</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <span class="stat-label">Total exercices validés</span>
+                        <div class="stat-icon brand-gold">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-exercices">0</div>
+                    <div class="stat-sub">sur <span id="stat-exo-total">0</span> requis</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <span class="stat-label">Niveau dominant</span>
+                        <div class="stat-icon brand-blue">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-niveau">—</div>
+                    <div class="stat-sub" id="stat-niveau-sub">Aucune donnée</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card-top">
+                        <span class="stat-label">Réussite globale</span>
+                        <div class="stat-icon brand-purple">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="stat-pct">0%</div>
+                    <div class="stat-sub">Moyenne de complétion</div>
+                </div>
+            </div>
+
+            <!-- Grille Dashboard -->
+            <div class="grid-2">
+                <!-- Tableau des pilotes -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                            Pilotes récemment suivis
+                        </span>
+                        <a href="etudiants.html" class="btn btn-ghost btn-sm">Tous les pilotes</a>
+                    </div>
+                    <div class="card-body" id="recent-pilotes">
+                        <!-- généré par JS -->
+                    </div>
+                </div>
+
+                <!-- Répartition des niveaux -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            Effectifs par niveau APPI
+                        </span>
+                    </div>
+                    <div class="card-body" id="level-overview">
+                        <!-- généré par JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Avancement par niveau -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                        Niveaux de compétences de l'école (Moyennes)
+                    </span>
+                </div>
+                <div class="card-body" id="level-progress-overview">
+                    <!-- généré par JS -->
+                </div>
+            </div>
+        </div>
+
+
+        <!-- ══════════════════════════════════════
+             DASHBOARD ÉLÈVE
+        ══════════════════════════════════════ -->
+        <div id="student-dashboard" class="student-only" style="display:none">
+            <!-- Profil élève -->
+            <div class="student-profile-card" id="studentProfileBox">
+                <!-- généré par JS -->
+            </div>
+
+            <!-- Progression par niveau -->
+            <h3 style="font-family:var(--font-heading);color:var(--text-white);margin-bottom:16px;">Tes Certifications APPI</h3>
+            <div class="student-level-grid" id="studentLevelGrid">
+                <!-- généré par JS -->
+            </div>
+
+            <!-- Liste des exercices à accomplir -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                        Checklist d'exercices requis pour ton niveau actuel
+                    </span>
+                    <a href="progression.html" class="btn btn-ghost btn-sm">Détail complet de progression</a>
+                </div>
+                <div class="card-body">
+                    <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:20px;">
+                        ⚠️ En mode consultation élève, ces exercices sont en lecture seule. Ton instructeur validera ces exercices lors de tes séances théoriques et pratiques en pente école ou en vol libre.
+                    </p>
+                    <div class="exo-list" id="studentExoList">
+                        <!-- généré par JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script src="app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Date
+    const now = new Date();
+    document.getElementById('topbar-date').textContent = now.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+
+    const role = getCurrentRole();
+    const data = loadData();
+    const pilotes = data.pilotes || [];
+
+    // Met à jour le titre de page selon le rôle
+    document.getElementById('page-title').textContent = role === 'instructor' ? 'Espace Instructeurs' : 'Espace Élève';
+
+    if (role === 'instructor') {
+        // Mode instructeur
+        document.getElementById('sb-count').textContent = pilotes.length;
+        document.getElementById('stat-pilotes').textContent = pilotes.length;
+        document.getElementById('stat-pilotes-sub').textContent = 
+            pilotes.length === 0 ? 'Aucun pilote enregistré' :
+            pilotes.length === 1 ? '1 pilote enregistré' : `${pilotes.length} pilotes enregistrés`;
+
+        let totalDone = 0, totalExo = 0, totalPct = 0;
+        pilotes.forEach(p => {
+            const g = getGlobalProgress(p);
+            totalDone += g.done;
+            totalPct  += g.pct;
+        });
+        Object.values(APPI_EXERCISES).forEach(exos => totalExo += exos.length);
+
+        document.getElementById('stat-exercices').textContent = totalDone;
+        document.getElementById('stat-exo-total').textContent = totalExo * pilotes.length || 0;
+        document.getElementById('stat-pct').textContent = pilotes.length > 0 ? Math.round(totalPct / pilotes.length) + '%' : '0%';
+
+        // Niveau dominant
+        const lvlCount = {};
+        pilotes.forEach(p => { lvlCount[p.niveau] = (lvlCount[p.niveau] || 0) + 1; });
+        const topLvl = Object.entries(lvlCount).sort((a,b) => b[1]-a[1])[0];
+        if (topLvl) {
+            document.getElementById('stat-niveau').textContent = APPI_LEVELS[topLvl[0]].label;
+            document.getElementById('stat-niveau-sub').textContent = `${topLvl[1]} pilote(s) à ce niveau`;
+        }
+
+        // Pilotes récents
+        const recentEl = document.getElementById('recent-pilotes');
+        if (pilotes.length > 0) {
+            const recent = [...pilotes].reverse().slice(0, 5);
+            recentEl.innerHTML = `<table class="data-table">
+                <thead><tr><th>Pilote</th><th>Niveau</th><th>Progression</th></tr></thead>
+                <tbody>
+                ${recent.map((p) => {
+                    const g = getGlobalProgress(p);
+                    const col = avatarColor(pilotes.indexOf(p));
+                    return `<tr onclick="location.href='progression.html?id=${p.id}'" style="cursor:pointer">
+                        <td class="td-name">
+                            <div class="avatar avatar-${col}">${initials(p.nom, p.prenom)}</div>
+                            <span>${p.prenom} ${p.nom}</span>
+                        </td>
+                        <td><span class="badge ${APPI_LEVELS[p.niveau]?.badgeClass || 'badge-student'}">${APPI_LEVELS[p.niveau]?.label || p.niveau}</span></td>
+                        <td>
+                            <div class="progress-wrap">
+                                <div class="progress-bar-bg"><div class="progress-bar-fill ${APPI_LEVELS[p.niveau]?.color || 'brand-pink'}" style="width:${g.pct}%"></div></div>
+                                <span class="progress-pct">${g.pct}%</span>
+                            </div>
+                        </td>
+                    </tr>`;
+                }).join('')}
+                </tbody></table>`;
+        } else {
+            recentEl.innerHTML = `
+                <div class="empty-state">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                    <h3>Aucun pilote</h3>
+                    <p>Commencez par ajouter un premier pilote.</p>
+                    <a href="etudiants.html" class="btn btn-primary btn-sm">Ajouter un pilote</a>
+                </div>`;
+        }
+
+        // Répartition niveaux
+        const lvlEl = document.getElementById('level-overview');
+        lvlEl.innerHTML = Object.entries(APPI_LEVELS).map(([key, lvl]) => {
+            const count = pilotes.filter(p => p.niveau === key).length;
+            const pct = pilotes.length > 0 ? Math.round((count / pilotes.length) * 100) : 0;
+            return `<div class="level-row" onclick="location.href='etudiants.html?level=${key}'" style="cursor:pointer">
+                <div class="level-info">
+                    <div class="level-name">${lvl.label}</div>
+                    <div class="progress-wrap" style="margin-top:4px">
+                        <div class="progress-bar-bg"><div class="progress-bar-fill ${lvl.color}" style="width:${pct}%"></div></div>
+                        <span class="progress-pct">${pct}%</span>
+                    </div>
+                </div>
+                <span class="badge ${lvl.badgeClass}">${count}</span>
+            </div>`;
+        }).join('');
+
+        // Avancement par niveau
+        const progEl = document.getElementById('level-progress-overview');
+        progEl.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+        ${Object.entries(APPI_EXERCISES).map(([lvl, exos]) => {
+            let avgPct = 0;
+            if (pilotes.length > 0) {
+                const sum = pilotes.reduce((acc, p) => {
+                    const done = (p.exercices?.[lvl] || []).length;
+                    return acc + Math.round((done / exos.length) * 100);
+                }, 0);
+                avgPct = Math.round(sum / pilotes.length);
+            }
+            const l = APPI_LEVELS[lvl];
+            return `<div style="background:var(--bg-input);border:1px solid var(--border);padding:16px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                    <span style="font-family:var(--font-heading);font-weight:700;color:var(--text-white);font-size:0.9rem">${l.label}</span>
+                    <span class="badge ${l.badgeClass}" style="margin-left:auto;font-size:0.6rem;padding:2px 6px;">${exos.length} exo</span>
+                </div>
+                <div class="progress-wrap">
+                    <div class="progress-bar-bg" style="height:6px"><div class="progress-bar-fill ${l.color}" style="width:${avgPct}%;height:6px"></div></div>
+                </div>
+                <div style="text-align:right;margin-top:6px;font-size:0.72rem;color:var(--text-muted)">${avgPct}% moyen</div>
+            </div>`;
+        }).join('')}
+        </div>`;
+
+    } else {
+        // Mode élève
+        const activeStudentId = getSelectedStudentId();
+        const p = pilotes.find(x => x.id === activeStudentId) || pilotes[0];
+
+        if (p) {
+            // Afficher le profil élève
+            const col = avatarColor(pilotes.indexOf(p));
+            const g = getGlobalProgress(p);
+            const lp = getPiloteProgress(p);
+            const currentLvl = APPI_LEVELS[p.niveau];
+
+            document.getElementById('studentProfileBox').innerHTML = `
+                <div class="student-card-avatar avatar-${col}">${initials(p.nom, p.prenom)}</div>
+                <div class="pilot-header-info">
+                    <div class="pilot-header-name">Bonjour, ${p.prenom} ${p.nom} !</div>
+                    <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:8px;">Suivi de formation théorique et pratique Haut les Mains.</p>
+                    <div class="pilot-header-meta">
+                        <span>📧 ${p.email || 'Pas d\'email renseigné'}</span>
+                        <span>📞 ${p.tel || 'Pas de numéro'}</span>
+                    </div>
+                </div>
+                <div class="pilot-header-stats">
+                    <div class="pilot-stat"><div class="pilot-stat-val">${g.done}</div><div class="pilot-stat-lbl">Exercices Validés</div></div>
+                    <div class="pilot-stat"><div class="pilot-stat-val">${g.pct}%</div><div class="pilot-stat-lbl">Avancement total</div></div>
+                </div>`;
+
+            // Grille des certifications
+            document.getElementById('studentLevelGrid').innerHTML = Object.entries(APPI_LEVELS).map(([key, lvl]) => {
+                const isActive = p.niveau === key;
+                const statusLabel = isActive ? 'En cours' : (lp[key].pct === 100 ? 'Validé' : 'Non démarré');
+                return `<div class="level-card ${isActive ? 'active-level' : ''}">
+                    <div class="level-card-top">
+                        <span class="level-card-title">${lvl.label}</span>
+                        <span class="badge ${lvl.badgeClass}" style="font-size:0.6rem;padding:2px 6px;">${statusLabel}</span>
+                    </div>
+                    <div class="progress-wrap">
+                        <div class="progress-bar-bg" style="height:6px"><div class="progress-bar-fill ${lvl.color}" style="width:${lp[key].pct}%;height:6px"></div></div>
+                        <span class="progress-pct" style="font-size:0.75rem">${lp[key].pct}%</span>
+                    </div>
+                </div>`;
+            }).join('');
+
+            // Exercices du niveau actuel
+            const exos = APPI_EXERCISES[p.niveau] || [];
+            const done = p.exercices?.[p.niveau] || [];
+            const studentExoList = document.getElementById('studentExoList');
+
+            if (exos.length > 0) {
+                studentExoList.innerHTML = exos.map(ex => {
+                    const isDone = done.includes(ex.id);
+                    return `<div class="exercise-item">
+                        <div class="exercise-check ${isDone ? 'done' : ''}"></div>
+                        <div class="exercise-text">
+                            <div class="exercise-name ${isDone ? 'done' : ''}">${ex.name}</div>
+                            <div class="exercise-desc">${ex.desc}</div>
+                        </div>
+                        <span class="badge ${isDone ? currentLvl.badgeClass : ''}" style="${isDone ? '' : 'opacity:0.2'}">${isDone ? '✓ Validé' : '—'}</span>
+                    </div>`;
+                }).join('');
+            } else {
+                studentExoList.innerHTML = `<p class="text-muted">Aucun exercice requis à ce niveau.</p>`;
+            }
+
+        } else {
+            // Aucun élève dans la base
+            document.getElementById('student-dashboard').innerHTML = `
+                <div class="empty-state">
+                    <h3>Aucun profil élève disponible</h3>
+                    <p>Basculez en mode instructeur pour ajouter un élève pilote dans la base.</p>
+                </div>`;
+        }
+    }
+});
+</script>
+</body>
+</html>

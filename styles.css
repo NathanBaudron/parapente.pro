@@ -125,7 +125,7 @@ a:hover {
     gap: 12px;
 }
 .nav-brand img {
-    height: 45px;
+    height: 65px;
     width: auto;
     transition: transform var(--transition);
 }

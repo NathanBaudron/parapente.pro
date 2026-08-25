@@ -616,3 +616,17 @@ textarea.form-control {
 .text-center { text-align: center; }
 .mt-4 { margin-top: 1.5rem; }
 .mb-2 { margin-bottom: 0.5rem; }
+
+/* ── Page Transitions ── */
+body {
+    animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0; /* Starts hidden to allow animation to reveal */
+}
+body.fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease;
+}
+@keyframes pageFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}

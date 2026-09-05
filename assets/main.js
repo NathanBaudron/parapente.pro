@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ── Language Selector & Google Translate Widget ──
+    initLanguageSelector();
+
     // ── Navbar Scroll Effect ──
     const navbar = document.getElementById('navbar');
     if (navbar && navbar.classList.contains('transparent')) {
@@ -92,6 +95,115 @@ window.addEventListener('pageshow', (e) => {
         document.body.classList.remove('fade-out');
     }
 });
+
+// ── Language Selector & Google Translate Logic ──
+function initLanguageSelector() {
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+
+    const LANGS = {
+        fr: { code: 'FR', flag: '🇫🇷', name: 'Français' },
+        en: { code: 'EN', flag: '🇬🇧', name: 'English' },
+        es: { code: 'ES', flag: '🇪🇸', name: 'Español' }
+    };
+
+    let currentLang = localStorage.getItem('site_lang') || 'fr';
+    const match = document.cookie.match(/googtrans=\/fr\/([a-z]{2})/);
+    if (match && match[1] && LANGS[match[1]]) {
+        currentLang = match[1];
+    }
+    if (!LANGS[currentLang]) currentLang = 'fr';
+
+    const container = document.createElement('div');
+    container.className = 'lang-selector';
+    container.id = 'lang-selector';
+
+    container.innerHTML = `
+        <button class="lang-btn" id="lang-btn" aria-label="Changer de langue">
+            <span class="flag">${LANGS[currentLang].flag}</span>
+            <span class="lang-code">${LANGS[currentLang].code}</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown" id="lang-dropdown">
+            <button class="lang-option ${currentLang === 'fr' ? 'active' : ''}" data-lang="fr"><span class="flag">🇫🇷</span> Français</button>
+            <button class="lang-option ${currentLang === 'en' ? 'active' : ''}" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+            <button class="lang-option ${currentLang === 'es' ? 'active' : ''}" data-lang="es"><span class="flag">🇪🇸</span> Español</button>
+        </div>
+    `;
+
+    navLinks.appendChild(container);
+
+    const langBtn = container.querySelector('#lang-btn');
+    const dropdown = container.querySelector('#lang-dropdown');
+    const options = container.querySelectorAll('.lang-option');
+
+    langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        container.classList.toggle('open');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!container.contains(e.target)) {
+            container.classList.remove('open');
+        }
+    });
+
+    options.forEach(opt => {
+        opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const lang = opt.dataset.lang;
+            if (lang === currentLang) {
+                container.classList.remove('open');
+                return;
+            }
+            switchLanguage(lang);
+        });
+    });
+
+    if (!document.getElementById('google_translate_element')) {
+        const gtDiv = document.createElement('div');
+        gtDiv.id = 'google_translate_element';
+        gtDiv.style.display = 'none';
+        document.body.appendChild(gtDiv);
+    }
+
+    if (!window.googleTranslateElementInit) {
+        window.googleTranslateElementInit = function() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'fr',
+                includedLanguages: 'fr,en,es',
+                autoDisplay: false
+            }, 'google_translate_element');
+        };
+
+        const script = document.createElement('script');
+        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        document.head.appendChild(script);
+    }
+
+    function switchLanguage(lang) {
+        localStorage.setItem('site_lang', lang);
+
+        const domain = window.location.hostname;
+        document.cookie = `googtrans=/fr/${lang}; path=/;`;
+        if (domain && domain !== 'localhost' && domain !== '127.0.0.1') {
+            document.cookie = `googtrans=/fr/${lang}; path=/; domain=.${domain};`;
+        }
+
+        const select = document.querySelector('.goog-te-combo');
+        if (select) {
+            select.value = lang;
+            select.dispatchEvent(new Event('change'));
+            container.classList.remove('open');
+            container.querySelector('.flag').textContent = LANGS[lang].flag;
+            container.querySelector('.lang-code').textContent = LANGS[lang].code;
+            options.forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+            currentLang = lang;
+        } else {
+            location.reload();
+        }
+    }
+}
 
 // ── Interactive Calendar Implementation ──
 function initInteractiveCalendar() {
@@ -207,7 +319,7 @@ function initInteractiveCalendar() {
         prevBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>';
         prevBtn.addEventListener('click', () => {
             currentMonth--;
-            if (currentMonth < 4) currentMonth = 8; // Loop May-Sept
+            if (currentMonth < 4) currentMonth = 8;
             renderCalendar();
         });
 
@@ -350,7 +462,6 @@ function initInteractiveCalendar() {
         const daysInMonth = new Date(year, month + 1, 0).getDate();
         const daysInPrevMonth = new Date(year, month, 0).getDate();
 
-        // Convert Sunday=0 to Monday=0 indexing (0: Lun, 6: Dim)
         let startDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7;
 
         // 1. Previous month padding cells
@@ -378,7 +489,6 @@ function initInteractiveCalendar() {
             num.textContent = day;
             cell.appendChild(num);
 
-            // Find stages active on this date
             const activeStages = stages.filter(s => cellDateStr >= s.startDate && cellDateStr <= s.endDate);
 
             if (activeStages.length > 0) {
@@ -400,7 +510,7 @@ function initInteractiveCalendar() {
             monthGrid.appendChild(cell);
         }
 
-        // 3. Next month padding cells to complete 35 or 42 grid items
+        // 3. Next month padding cells
         const totalCellsSoFar = startDayOfWeek + daysInMonth;
         const totalCellsTarget = totalCellsSoFar > 35 ? 42 : 35;
         const nextMonthPadding = totalCellsTarget - totalCellsSoFar;
@@ -464,7 +574,6 @@ function initInteractiveCalendar() {
         detailCard.style.padding = '24px';
         detailCard.style.background = 'var(--bg-card)';
         detailCard.style.border = '2px solid var(--brand-orange)';
-        detailCard.style.borderRadius = '12px';
         detailCard.style.boxShadow = 'var(--shadow-md)';
 
         detailCard.innerHTML = `

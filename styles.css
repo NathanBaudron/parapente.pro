@@ -210,6 +210,109 @@ a:hover {
     color: var(--dark-grey);
 }
 
+/* ── Language Selector Widget (Header top right, Sharp Square DA) ── */
+.lang-selector {
+    position: relative;
+    display: inline-block;
+    margin-left: 8px;
+}
+
+.lang-btn {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--dark-grey);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.navbar.transparent .lang-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    backdrop-filter: blur(5px);
+}
+.lang-btn:hover,
+.lang-selector.open .lang-btn {
+    border-color: var(--brand-orange);
+    color: var(--brand-orange);
+}
+.navbar.transparent .lang-btn:hover,
+.navbar.transparent .lang-selector.open .lang-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.lang-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 4px);
+    right: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    min-width: 150px;
+    z-index: 1005;
+}
+.lang-selector.open .lang-dropdown {
+    display: block;
+}
+
+.lang-option {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 10px 16px;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--dark-grey);
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background var(--transition), color var(--transition);
+}
+.lang-option:hover {
+    background: var(--bg-card-hover);
+    color: var(--brand-orange);
+}
+.lang-option.active {
+    font-weight: 700;
+    color: var(--brand-orange);
+    background: var(--brand-orange-glow);
+}
+
+/* Hide default Google Translate top banner & elements */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+body {
+    top: 0px !important;
+}
+#google_translate_element {
+    display: none !important;
+}
+.goog-te-spinner-pos {
+    display: none !important;
+}
+.skiptranslate {
+    display: inline !important;
+}
+.goog-te-gadget {
+    font-size: 0 !important;
+}
+
 /* ── Page Container ── */
 .page-container {
     flex: 1;
@@ -437,7 +540,7 @@ a:hover {
     transform: scale(1.04);
 }
 
-/* ── Level Cards (APPI page — horizontal layout) ── */
+/* ── Level Cards (APPI page) ── */
 .level-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -615,7 +718,7 @@ a:hover {
     flex-shrink: 0;
 }
 
-/* ── Badge Types (Calendrier page - Sharp Square DA) ── */
+/* ── Badge Types ── */
 .badge-type {
     display: inline-block;
     padding: 4px 10px;
@@ -700,7 +803,7 @@ a:hover {
     display: block;
 }
 
-/* ── Interactive Monthly Calendar Widget (Sharp Geometric Square DA) ── */
+/* ── Interactive Monthly Calendar Widget ── */
 .cal-wrapper {
     max-width: 1100px;
     margin: 0 auto;
@@ -846,7 +949,7 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
-/* ── Calendar Monthly Grid (Square DA) ── */
+/* ── Calendar Monthly Grid ── */
 .cal-grid-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -948,7 +1051,7 @@ a:hover {
     text-decoration: line-through;
 }
 
-/* Event List Card Details Below Grid (Square DA) */
+/* Event List Card Details */
 .cal-events-list {
     margin-top: 30px;
 }
@@ -1118,6 +1221,18 @@ tbody tr:hover {
     }
     .hero-title { font-size: 3rem; }
     .hero-fullscreen .hero-title { font-size: 3.5rem; }
+    .lang-selector {
+        margin-left: 0;
+        margin-top: 12px;
+        width: 100%;
+    }
+    .lang-btn {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .lang-dropdown {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {

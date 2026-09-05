@@ -96,25 +96,35 @@ window.addEventListener('pageshow', (e) => {
     }
 });
 
-// ── Google Translate Banner Destroyer ──
+// ── Google Translate Popup & Banner Root-Cause Destroyer ──
 function nukeGoogleTranslateBanner() {
     const selectors = [
         '.goog-te-banner-frame',
         'iframe.goog-te-banner-frame',
-        'iframe[class*="goog-te-banner-frame"]',
-        'iframe[id*="goog-te-banner-frame"]',
-        '.VIpgJd-yA0Offset-V67pMc-i51Standard',
-        '.VIpgJd-yA0Offset-vVrGl-sT2u3b',
-        '#goog-gt-tt'
+        'iframe[class*="goog"]',
+        'iframe[id*="goog"]',
+        'div[class*="VIpgJd"]',
+        'div[id*="VIpgJd"]',
+        'div[class*="goog-te"]',
+        'div[id*="goog-gt"]',
+        '#goog-gt-tt',
+        '#goog-gt-vt',
+        '.goog-te-balloon-frame',
+        '.goog-tooltip'
     ];
     selectors.forEach(sel => {
         document.querySelectorAll(sel).forEach(el => {
-            el.style.display = 'none';
-            el.style.opacity = '0';
-            el.style.visibility = 'hidden';
-            if (el.parentNode && el.tagName === 'IFRAME') {
-                el.remove();
-            }
+            try {
+                el.style.setProperty('display', 'none', 'important');
+                el.style.setProperty('visibility', 'hidden', 'important');
+                el.style.setProperty('opacity', '0', 'important');
+                el.style.setProperty('pointer-events', 'none', 'important');
+                el.style.setProperty('position', 'absolute', 'important');
+                el.style.setProperty('top', '-9999px', 'important');
+                if (el.tagName === 'IFRAME' || el.id === 'goog-gt-tt' || el.classList.contains('VIpgJd-yA0Offset-V67pMc-i51Standard')) {
+                    el.remove();
+                }
+            } catch(e) {}
         });
     });
     if (document.body.style.top !== '0px') {
@@ -126,7 +136,7 @@ function nukeGoogleTranslateBanner() {
 }
 const gtObserver = new MutationObserver(nukeGoogleTranslateBanner);
 gtObserver.observe(document.documentElement, { childList: true, subtree: true, attributes: true });
-setInterval(nukeGoogleTranslateBanner, 300);
+setInterval(nukeGoogleTranslateBanner, 200);
 
 // ── Language Selector & Google Translate Logic ──
 function initLanguageSelector() {

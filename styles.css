@@ -291,24 +291,34 @@ a:hover {
     background: var(--brand-orange-glow);
 }
 
-/* Hide default Google Translate top banner & elements completely */
-.goog-te-banner-frame.skiptranslate,
-.goog-te-banner-frame,
-iframe.goog-te-banner-frame,
-iframe[class*="goog-te-banner-frame"],
-iframe[id*="goog-te-banner-frame"],
+/* Complete Root-Cause Elimination of all Google Translate Popups, Banners, Tooltips & Overlays */
 #goog-gt-tt,
+#goog-gt-vt,
+.goog-te-banner-frame,
 .goog-te-balloon-frame,
+.goog-te-menu-frame,
 .goog-tooltip,
 .goog-tooltip:hover,
-.VIpgJd-yA0Offset-V67pMc-i51Standard,
-.VIpgJd-yA0Offset-vVrGl-sT2u3b {
+.goog-text-highlight,
+.goog-te-spinner-pos,
+iframe[class*="goog"],
+iframe[id*="goog"],
+div[class*="VIpgJd"],
+div[id*="VIpgJd"],
+div[class*="goog-te"],
+div[id*="goog-gt"] {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
     pointer-events: none !important;
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+    width: 0 !important;
+    height: 0 !important;
+    max-height: 0 !important;
+    max-width: 0 !important;
+    overflow: hidden !important;
 }
 
 body {
@@ -319,35 +329,26 @@ body {
 
 html {
     top: 0px !important;
+    margin-top: 0px !important;
 }
 
-#google_translate_element {
+#google_translate_element,
+.goog-te-gadget,
+.goog-te-combo {
     display: none !important;
-}
-
-.goog-te-spinner-pos {
-    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
 }
 
 .skiptranslate {
     display: inline !important;
 }
 
-.goog-te-gadget {
-    font-size: 0 !important;
-    line-height: 0 !important;
-    height: 0 !important;
-    width: 0 !important;
-    overflow: hidden !important;
-}
-
-.goog-te-combo {
-    display: none !important;
-}
-
 .goog-text-highlight {
     background-color: transparent !important;
     box-shadow: none !important;
+    border: none !important;
 }
 
 /* ── Page Container ── */

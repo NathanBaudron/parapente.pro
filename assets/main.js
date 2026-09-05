@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ── Mobile Nav Toggle (centralized) ──
+    // ── Mobile Nav Toggle ──
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
     if (navToggle && navLinks) {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Language Selector & Google Translate Widget ──
+    // ── Clean Multi-Language Selector (FR, EN, ES — 0 Popups) ──
     initLanguageSelector();
 
     // ── Navbar Scroll Effect ──
@@ -96,49 +96,134 @@ window.addEventListener('pageshow', (e) => {
     }
 });
 
-// ── Google Translate Popup & Banner Root-Cause Destroyer ──
-function nukeGoogleTranslateBanner() {
-    const selectors = [
-        '.goog-te-banner-frame',
-        'iframe.goog-te-banner-frame',
-        'iframe[class*="goog"]',
-        'iframe[id*="goog"]',
-        'div[class*="VIpgJd"]',
-        'div[id*="VIpgJd"]',
-        'div[class*="goog-te"]',
-        'div[id*="goog-gt"]',
-        '#goog-gt-tt',
-        '#goog-gt-vt',
-        '.goog-te-balloon-frame',
-        '.goog-tooltip'
-    ];
-    selectors.forEach(sel => {
-        document.querySelectorAll(sel).forEach(el => {
-            try {
-                el.style.setProperty('display', 'none', 'important');
-                el.style.setProperty('visibility', 'hidden', 'important');
-                el.style.setProperty('opacity', '0', 'important');
-                el.style.setProperty('pointer-events', 'none', 'important');
-                el.style.setProperty('position', 'absolute', 'important');
-                el.style.setProperty('top', '-9999px', 'important');
-                if (el.tagName === 'IFRAME' || el.id === 'goog-gt-tt' || el.classList.contains('VIpgJd-yA0Offset-V67pMc-i51Standard')) {
-                    el.remove();
-                }
-            } catch(e) {}
-        });
-    });
-    if (document.body.style.top !== '0px') {
-        document.body.style.top = '0px';
+// ── Clean Native Multi-Language System (FR / EN / ES) ──
+const I18N_DICT = {
+    en: {
+        "Accueil": "Home",
+        "L'École (APPI)": "The School (APPI)",
+        "Formations": "Courses",
+        "Espace PRO": "PRO Area",
+        "Calendrier": "Calendar",
+        "Tarifs": "Prices",
+        "Contact": "Contact",
+        "Découvrir nos formations": "Discover our courses",
+        "Voir l'Espace PRO": "View PRO Area",
+        "En savoir plus": "Learn more",
+        "Espace dédié": "Dedicated area",
+        "Voir les dates": "View dates",
+        "Voir les tarifs": "View prices",
+        "Réserver": "Book now",
+        "Réserver ce stage": "Book this course",
+        "Candidater": "Apply",
+        "Nous contacter": "Contact us",
+        "Envoyer le message": "Send message",
+        "Volez plus haut,<br>volez plus loin": "Fly higher,<br>fly further",
+        "École de parapente professionnelle. De l'initiation aux brevets instructeurs, découvrez la progression APPI avec des experts passionnés.": "Professional paragliding school. From beginner courses to instructor certifications, discover APPI progression with passionate experts.",
+        "Accès Rapide": "Quick Access",
+        "Formations & Stages": "Courses & Clinics",
+        "Biplace, stages cross, SIV, voyages et coaching. Tout pour progresser à votre rythme.": "Tandem flights, XC clinics, SIV, trips and coaching. Everything to progress at your own pace.",
+        "Filière instructeurs, biplaces commerciaux et formations professionnelles qualifiantes.": "Instructor path, commercial tandem, and professional training.",
+        "Consultez toutes les dates de nos prochains stages, séjours et formations professionnelles.": "View all dates for our upcoming courses, trips, and professional training.",
+        "Consultez notre grille tarifaire pour le grand public et les professionnels.": "Check our price list for leisure pilots and professionals.",
+        "Nos Formations": "Our Courses",
+        "Pour les pilotes en quête de progression, de l'initiation au vol de distance.": "For pilots seeking progression, from initiation to cross-country flight.",
+        "Biplace — Non commercial": "Tandem — Non-commercial",
+        "Formation pour apprendre à voler en biplace dans un cadre associatif ou familial. Partagez votre passion en toute sécurité avec vos proches.": "Training to learn tandem flying in a club or family setting. Share your passion safely with your loved ones.",
+        "Stage Cross": "XC Clinic",
+        "Apprenez à exploiter les ascendances thermiques, à transiter et à préparer vos vols de distance. Idéal pour valider le niveau Advanced Pilot.": "Learn to use thermals, transition and prepare your cross-country flights. Ideal to validate the Advanced Pilot level.",
+        "Stage SIV (Simulation d'Incidents de Vol)": "SIV Clinic (Flight Incidents)",
+        "Maîtrisez votre voile dans toutes les configurations : fermetures, autorotation, décrochage. Indispensable pour votre sécurité active.": "Master your glider in all configurations: collapses, autorotation, stalls. Essential for your active safety.",
+        "Visio & Théorie": "Online Theory & Webinars",
+        "Cours théoriques en visioconférence : météo avancée, lecture des émagrammes, réglementation, préparation mentale.": "Online theory courses: advanced weather, emagram analysis, airspace regulations, mental preparation.",
+        "Voyage à la carte": "Custom Trips",
+        "Séjours itinérants en France ou à l'étranger. Découvrez de nouveaux sites de vol avec un encadrement professionnel.": "Guided flying trips in France or abroad. Discover new flying sites with professional coaching.",
+        "Coaching Individuel": "Individual Coaching",
+        "Analyse vidéo, débriefing de traces GPS, accompagnement personnalisé pour atteindre vos objectifs spécifiques.": "Video analysis, GPS track debriefing, personalized guidance to reach your specific goals.",
+        "Nos Tarifs": "Our Rates",
+        "Des prix transparents pour votre progression APPI, du loisir à la professionnalisation.": "Transparent pricing for your APPI progression, from leisure to professional level.",
+        "Tarifs Formations (Loisir)": "Leisure Course Rates",
+        "Tarifs Espace PRO": "PRO Area Rates",
+        "Calendrier des Stages": "Course Schedule",
+        "Consultez le planning mensuel de nos formations loisir et professionnelles pour la saison 2026.": "View the monthly schedule of our leisure and professional training for the 2026 season.",
+        "Contactez-nous": "Contact Us",
+        "Une question ? Une réservation ? Notre équipe est à votre écoute.": "A question? A booking? Our team is at your service.",
+        "Nos Coordonnées": "Contact Details",
+        "Envoyez-nous un message": "Send us a message",
+        "Le Système Éducatif APPI": "The APPI Educational System",
+        "Une progression internationale, standardisée et sécurisée.": "An international, standardized and safe progression.",
+        "Espace Professionnel": "Professional Space",
+        "Faites de votre passion un métier avec nos formations qualifiantes APPI.": "Turn your passion into a career with our APPI qualifying courses.",
+        "Formations Biplace": "Tandem Training",
+        "Filière Instructeur APPI": "APPI Instructor Course",
+        "Nous rejoindre": "Join Us",
+        "Liens utiles": "Useful links",
+        "Pratique": "Info",
+        "Contact & Accès": "Contact & Access"
+    },
+    es: {
+        "Accueil": "Inicio",
+        "L'École (APPI)": "La Escuela (APPI)",
+        "Formations": "Cursos",
+        "Espace PRO": "Espacio PRO",
+        "Calendrier": "Calendario",
+        "Tarifs": "Tarifas",
+        "Contact": "Contacto",
+        "Découvrir nos formations": "Descubrir nuestros cursos",
+        "Voir l'Espace PRO": "Ver Espacio PRO",
+        "En savoir plus": "Saber más",
+        "Espace dédié": "Espacio dedicado",
+        "Voir les dates": "Ver fechas",
+        "Voir les tarifs": "Ver tarifas",
+        "Réserver": "Reservar",
+        "Réserver ce stage": "Reservar este curso",
+        "Candidater": "Solicitar",
+        "Nous contacter": "Contáctanos",
+        "Envoyer le message": "Enviar mensaje",
+        "Volez plus haut,<br>volez plus loin": "Vuela más alto,<br>vuela más lejos",
+        "École de parapente professionnelle. De l'initiation aux brevets instructeurs, découvrez la progression APPI avec des experts passionnés.": "Escuela profesional de parapente. Desde la iniciación hasta las certificaciones de instructor, descubre la progresión APPI con expertos apasionados.",
+        "Accès Rapide": "Acceso Rápido",
+        "Formations & Stages": "Cursos y Etapas",
+        "Biplace, stages cross, SIV, voyages et coaching. Tout pour progresser à votre rythme.": "Vuelos biplaza, cursos XC, SIV, viajes y coaching. Todo para progresar a tu ritmo.",
+        "Filière instructeurs, biplaces commerciaux et formations professionnelles qualifiantes.": "Formación de instructores, biplaza comercial y formación profesional.",
+        "Consultez toutes les dates de nos prochains stages, séjours et formations professionnelles.": "Consulta todas las fechas de nuestros próximos cursos, viajes y formaciones.",
+        "Consultez notre grille tarifaire pour le grand public et les professionnels.": "Consulta nuestras tarifas para particulares y profesionales.",
+        "Nos Formations": "Nuestros Cursos",
+        "Pour les pilotes en quête de progression, de l'initiation au vol de distance.": "Para pilotos en busca de progresión, desde la iniciación hasta el vuelo de distancia.",
+        "Biplace — Non commercial": "Biplaza — No comercial",
+        "Formation pour apprendre à voler en biplace dans un cadre associatif ou familial. Partagez votre passion en toute sécurité avec vos proches.": "Formación para aprender a volar en biplaza en un entorno de club o familiar. Comparte tu pasión de forma segura con tus seres queridos.",
+        "Stage Cross": "Curso XC Cross",
+        "Apprenez à exploiter les ascendances thermiques, à transiter et à préparer vos vols de distance. Idéal pour valider le niveau Advanced Pilot.": "Aprende a aprovechar las térmicas, hacer transiciones y preparar tus vuelos de distancia. Ideal para validar el nivel Advanced Pilot.",
+        "Stage SIV (Simulation d'Incidents de Vol)": "Curso SIV (Incidencias de Vuelo)",
+        "Maîtrisez votre voile dans toutes les configurations : fermetures, autorotation, décrochage. Indispensable pour votre sécurité active.": "Domina tu vela en todas las configuraciones: colapsos, autorrotación, pérdidas. Indispensable para tu seguridad activa.",
+        "Visio & Théorie": "Teoría Online y Webinars",
+        "Cours théoriques en visioconférence : météo avancée, lecture des émagrammes, réglementation, préparation mentale.": "Cursos teóricos por videoconferencia: meteorología avanzada, emagramas, normativa y preparación mental.",
+        "Voyage à la carte": "Viajes a la carta",
+        "Séjours itinérants en France ou à l'étranger. Découvrez de nouveaux sites de vol avec un encadrement professionnel.": "Viajes guiados en Francia o en el extranjero. Descubre nuevos sitios de vuelo con entrenamiento profesional.",
+        "Coaching Individuel": "Coaching Individual",
+        "Analyse vidéo, débriefing de traces GPS, accompagnement personnalisé pour atteindre vos objectifs spécifiques.": "Análisis de video, debriefing de tracks GPS, acompañamiento personalizado para alcanzar tus objetivos.",
+        "Nos Tarifs": "Nuestras Tarifas",
+        "Des prix transparents pour votre progression APPI, du loisir à la professionnalisation.": "Precios transparentes para tu progresión APPI, desde el ocio hasta la profesionalización.",
+        "Tarifs Formations (Loisir)": "Tarifas de Cursos (Ocio)",
+        "Tarifs Espace PRO": "Tarifas Espacio PRO",
+        "Calendrier des Stages": "Calendario de Cursos",
+        "Consultez le planning mensuel de nos formations loisir et professionnelles pour la saison 2026.": "Consulta la programación mensual de nuestros cursos de ocio y profesionales para la temporada 2026.",
+        "Contactez-nous": "Contáctanos",
+        "Une question ? Une réservation ? Notre équipe est à votre écoute.": "¿Una pregunta? ¿Una reserva? Nuestro equipo está a tu disposición.",
+        "Nos Coordonnées": "Datos de Contacto",
+        "Envoyez-nous un message": "Envíanos un mensaje",
+        "Le Système Éducatif APPI": "El Sistema Educativo APPI",
+        "Une progression internationale, standardisée et sécurisée.": "Una progresión internacional, estandarizada y segura.",
+        "Espace Professionnel": "Espacio Profesional",
+        "Faites de votre passion un métier avec nos formations qualifiantes APPI.": "Haz de tu pasión tu profesión con nuestros cursos cualificados APPI.",
+        "Formations Biplace": "Formación Biplaza",
+        "Filière Instructeur APPI": "Curso de Instructor APPI",
+        "Nous rejoindre": "Únete a nosotros",
+        "Liens utiles": "Enlaces útiles",
+        "Pratique": "Práctica",
+        "Contact & Accès": "Contacto y Acceso"
     }
-    if (document.documentElement.style.top !== '0px') {
-        document.documentElement.style.top = '0px';
-    }
-}
-const gtObserver = new MutationObserver(nukeGoogleTranslateBanner);
-gtObserver.observe(document.documentElement, { childList: true, subtree: true, attributes: true });
-setInterval(nukeGoogleTranslateBanner, 200);
+};
 
-// ── Language Selector & Google Translate Logic ──
 function initLanguageSelector() {
     const navLinks = document.querySelector('.nav-links');
     if (!navLinks) return;
@@ -150,11 +235,6 @@ function initLanguageSelector() {
     };
 
     let currentLang = localStorage.getItem('site_lang') || 'fr';
-    const match = document.cookie.match(/googtrans=\/fr\/([a-z]{2})/);
-    if (match && match[1] && LANGS[match[1]]) {
-        currentLang = match[1];
-    }
-    if (!LANGS[currentLang]) currentLang = 'fr';
 
     const container = document.createElement('div');
     container.className = 'lang-selector';
@@ -202,48 +282,51 @@ function initLanguageSelector() {
         });
     });
 
-    if (!document.getElementById('google_translate_element')) {
-        const gtDiv = document.createElement('div');
-        gtDiv.id = 'google_translate_element';
-        gtDiv.style.display = 'none';
-        document.body.appendChild(gtDiv);
-    }
-
-    if (!window.googleTranslateElementInit) {
-        window.googleTranslateElementInit = function() {
-            new google.translate.TranslateElement({
-                pageLanguage: 'fr',
-                includedLanguages: 'fr,en,es',
-                autoDisplay: false
-            }, 'google_translate_element');
-        };
-
-        const script = document.createElement('script');
-        script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-        document.head.appendChild(script);
+    // Apply saved language on load
+    if (currentLang !== 'fr') {
+        applyTranslation(currentLang);
     }
 
     function switchLanguage(lang) {
+        currentLang = lang;
         localStorage.setItem('site_lang', lang);
+        document.documentElement.lang = lang;
 
-        const domain = window.location.hostname;
-        document.cookie = `googtrans=/fr/${lang}; path=/;`;
-        if (domain && domain !== 'localhost' && domain !== '127.0.0.1') {
-            document.cookie = `googtrans=/fr/${lang}; path=/; domain=.${domain};`;
-        }
+        container.querySelector('.flag').textContent = LANGS[lang].flag;
+        container.querySelector('.lang-code').textContent = LANGS[lang].code;
+        options.forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+        container.classList.remove('open');
 
-        const select = document.querySelector('.goog-te-combo');
-        if (select) {
-            select.value = lang;
-            select.dispatchEvent(new Event('change'));
-            container.classList.remove('open');
-            container.querySelector('.flag').textContent = LANGS[lang].flag;
-            container.querySelector('.lang-code').textContent = LANGS[lang].code;
-            options.forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
-            currentLang = lang;
-        } else {
-            location.reload();
-        }
+        applyTranslation(lang);
+    }
+
+    function applyTranslation(lang) {
+        const dict = I18N_DICT[lang];
+        const frDict = I18N_DICT['en']; // fallback reference
+
+        // Walk all text nodes and elements to replace matching French strings
+        const textElements = document.querySelectorAll('h1, h2, h3, h4, p, a, span, button, th, td, label');
+
+        textElements.forEach(el => {
+            // Save original French text in dataset if not present
+            if (!el.dataset.origText) {
+                el.dataset.origText = el.innerHTML.trim();
+            }
+
+            const orig = el.dataset.origText;
+
+            if (lang === 'fr') {
+                el.innerHTML = orig;
+            } else if (dict && dict[orig]) {
+                el.innerHTML = dict[orig];
+            } else {
+                // Try plain text match
+                const plainOrig = orig.replace(/<[^>]*>/g, '').trim();
+                if (dict && dict[plainOrig]) {
+                    el.textContent = dict[plainOrig];
+                }
+            }
+        });
     }
 }
 
@@ -339,19 +422,17 @@ function initInteractiveCalendar() {
     ];
 
     let currentYear = 2026;
-    let currentMonth = 4; // May (0-indexed: May=4)
-    let currentFilter = 'all'; // 'all', 'loisir', 'pro'
-    let currentView = 'grid'; // 'grid' or 'list'
+    let currentMonth = 4;
+    let currentFilter = 'all';
+    let currentView = 'grid';
     let selectedStage = null;
 
     function renderCalendar() {
         calContainer.innerHTML = '';
 
-        // 1. Controls Header
         const header = document.createElement('div');
         header.className = 'cal-header-bar';
 
-        // Month Selector Tabs & Nav
         const monthNav = document.createElement('div');
         monthNav.className = 'cal-month-nav';
 
@@ -383,7 +464,6 @@ function initInteractiveCalendar() {
         monthNav.appendChild(monthLabel);
         monthNav.appendChild(nextBtn);
 
-        // Month Shortcut Pills (May to Sept)
         const monthTabs = document.createElement('div');
         monthTabs.className = 'cal-month-tabs';
 
@@ -406,7 +486,6 @@ function initInteractiveCalendar() {
             monthTabs.appendChild(tabBtn);
         });
 
-        // Filter Bar & View Toggle
         const rightControls = document.createElement('div');
         rightControls.style.display = 'flex';
         rightControls.style.gap = '12px';
@@ -463,7 +542,6 @@ function initInteractiveCalendar() {
         header.appendChild(rightControls);
         calContainer.appendChild(header);
 
-        // Filter stages according to current filter
         const filteredStages = STAGES_DATA.filter(stage => {
             if (currentFilter === 'all') return true;
             return stage.type === currentFilter;
@@ -475,7 +553,6 @@ function initInteractiveCalendar() {
             renderListView(calContainer, filteredStages);
         }
 
-        // Render Stage Detail Card if any selected
         if (selectedStage) {
             renderSelectedStageDetail(calContainer, selectedStage);
         }
@@ -485,7 +562,6 @@ function initInteractiveCalendar() {
         const gridCard = document.createElement('div');
         gridCard.className = 'cal-grid-card';
 
-        // Weekday Headers (Lun - Dim)
         const daysHeader = document.createElement('div');
         daysHeader.className = 'cal-days-header';
         const dayNames = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
@@ -496,7 +572,6 @@ function initInteractiveCalendar() {
         });
         gridCard.appendChild(daysHeader);
 
-        // Days Grid Calculation
         const monthGrid = document.createElement('div');
         monthGrid.className = 'cal-month-grid';
 
@@ -506,7 +581,6 @@ function initInteractiveCalendar() {
 
         let startDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7;
 
-        // 1. Previous month padding cells
         for (let i = startDayOfWeek - 1; i >= 0; i--) {
             const cell = document.createElement('div');
             cell.className = 'cal-day-cell other-month';
@@ -517,7 +591,6 @@ function initInteractiveCalendar() {
             monthGrid.appendChild(cell);
         }
 
-        // 2. Current month day cells
         for (let day = 1; day <= daysInMonth; day++) {
             const cellDateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const cellDate = new Date(year, month, day);
@@ -552,7 +625,6 @@ function initInteractiveCalendar() {
             monthGrid.appendChild(cell);
         }
 
-        // 3. Next month padding cells
         const totalCellsSoFar = startDayOfWeek + daysInMonth;
         const totalCellsTarget = totalCellsSoFar > 35 ? 42 : 35;
         const nextMonthPadding = totalCellsTarget - totalCellsSoFar;

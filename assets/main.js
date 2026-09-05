@@ -96,6 +96,38 @@ window.addEventListener('pageshow', (e) => {
     }
 });
 
+// ── Google Translate Banner Destroyer ──
+function nukeGoogleTranslateBanner() {
+    const selectors = [
+        '.goog-te-banner-frame',
+        'iframe.goog-te-banner-frame',
+        'iframe[class*="goog-te-banner-frame"]',
+        'iframe[id*="goog-te-banner-frame"]',
+        '.VIpgJd-yA0Offset-V67pMc-i51Standard',
+        '.VIpgJd-yA0Offset-vVrGl-sT2u3b',
+        '#goog-gt-tt'
+    ];
+    selectors.forEach(sel => {
+        document.querySelectorAll(sel).forEach(el => {
+            el.style.display = 'none';
+            el.style.opacity = '0';
+            el.style.visibility = 'hidden';
+            if (el.parentNode && el.tagName === 'IFRAME') {
+                el.remove();
+            }
+        });
+    });
+    if (document.body.style.top !== '0px') {
+        document.body.style.top = '0px';
+    }
+    if (document.documentElement.style.top !== '0px') {
+        document.documentElement.style.top = '0px';
+    }
+}
+const gtObserver = new MutationObserver(nukeGoogleTranslateBanner);
+gtObserver.observe(document.documentElement, { childList: true, subtree: true, attributes: true });
+setInterval(nukeGoogleTranslateBanner, 300);
+
 // ── Language Selector & Google Translate Logic ──
 function initLanguageSelector() {
     const navLinks = document.querySelector('.nav-links');

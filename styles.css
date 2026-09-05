@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════
    APPI PRO — styles.css
-   Art Direction: Premium Light Website with Orange/Gold accents
-   Clean, polished, image-heavy, high contrast
+   Art Direction: Technical, Sharp & Professional (Carré / Geometric)
+   Clean, architectural, sharp-edged, high contrast with Orange/Gold accents
 ═══════════════════════════════════════════════════════════ */
 
 /* ── Custom Theme System ── */
@@ -41,7 +41,13 @@
 }
 
 /* ── Reset & Global ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    border-radius: 0 !important; /* Force sharp square corners globally for DA consistency */
+}
+
 html { font-size: 16px; scroll-behavior: smooth; }
 body {
     font-family: var(--font-body);
@@ -100,7 +106,9 @@ a:hover {
 .navbar.transparent .nav-link.active {
     color: var(--brand-orange);
 }
-.navbar.transparent .btn-primary { box-shadow: 0 4px 15px rgba(254, 70, 2, 0.3); transform: translateY(0);
+.navbar.transparent .btn-primary { 
+    box-shadow: 0 4px 15px rgba(254, 70, 2, 0.3); 
+    transform: translateY(0);
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: #FFFFFF !important;
@@ -207,7 +215,7 @@ a:hover {
     flex: 1;
     display: flex;
     flex-direction: column;
-    padding-top: 80px; /* Offset for fixed navbar on normal pages */
+    padding-top: 80px;
 }
 .page-container.no-padding {
     padding-top: 0;
@@ -222,7 +230,7 @@ a:hover {
     justify-content: center;
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Parallax effect */
+    background-attachment: fixed;
     color: white;
     text-align: center;
     overflow: hidden;
@@ -248,7 +256,7 @@ a:hover {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(15, 23, 42, 0.7); /* Overlay */
+    background: rgba(15, 23, 42, 0.7);
 }
 
 .hero-content {
@@ -321,10 +329,9 @@ a:hover {
     content: '';
     display: block;
     width: 80px;
-    height: 5px;
+    height: 4px;
     background: linear-gradient(to right, var(--brand-orange), var(--brand-gold));
     margin: 20px auto 0;
-    border-radius: 2px;
 }
 
 /* Left-aligned section title variant */
@@ -345,7 +352,6 @@ a:hover {
     height: 4px;
     background: linear-gradient(to right, var(--brand-orange), var(--brand-gold));
     margin: 16px 0 0;
-    border-radius: 2px;
 }
 
 /* ── Cards Grid (Formations) ── */
@@ -354,11 +360,11 @@ a:hover {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
 }
-.card { border-radius: 12px;
+.card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Dynamic bounce */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     display: flex;
     flex-direction: column;
     position: relative;
@@ -376,22 +382,22 @@ a:hover {
     z-index: 10;
 }
 .card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-md);
-    border-color: var(--border-light);
+    border-color: var(--brand-orange);
 }
 .card:hover::before {
     transform: scaleX(1);
 }
-.card-img { border-radius: 12px 12px 0 0;
+.card-img {
     height: 220px;
     background-color: #CBD5E1;
     background-size: cover;
     background-position: center;
     transition: transform 0.6s ease;
 }
-.card:hover .card-img { border-radius: 12px 12px 0 0;
-    transform: scale(1.05);
+.card:hover .card-img {
+    transform: scale(1.04);
 }
 .card-content {
     padding: 30px;
@@ -419,9 +425,8 @@ a:hover {
     flex: 1;
 }
 
-/* Card image with centered icon (for cards without photos) */
+/* Card image with centered icon */
 .card-img-icon {
-    border-radius: 12px 12px 0 0;
     height: 220px;
     display: flex;
     align-items: center;
@@ -429,12 +434,11 @@ a:hover {
     transition: transform 0.6s ease;
 }
 .card:hover .card-img-icon {
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 
-/* ── Level Cards (APPI page — horizontal layout with round photo) ── */
+/* ── Level Cards (APPI page — horizontal layout) ── */
 .level-card {
-    border-radius: 12px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
@@ -459,7 +463,7 @@ a:hover {
 .level-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow-md);
-    border-color: var(--border-light);
+    border-color: var(--brand-orange);
 }
 .level-card:hover::before {
     transform: scaleX(1);
@@ -467,11 +471,11 @@ a:hover {
 .level-card-img {
     width: 140px;
     height: 140px;
-    border-radius: 50%;
     background-size: cover;
     background-position: center;
     margin: 24px;
     flex-shrink: 0;
+    border: 2px solid var(--border);
 }
 .level-card-content {
     padding: 24px 24px 24px 0;
@@ -484,8 +488,8 @@ a:hover {
     margin-bottom: 0;
 }
 
-/* ── Buttons ── */
-.btn { border-radius: 8px;
+/* ── Buttons (Sharp Square DA) ── */
+.btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -517,12 +521,18 @@ a:hover {
     transform: scaleY(1);
 }
 
-.btn-primary { box-shadow: 0 4px 15px rgba(254, 70, 2, 0.3); transform: translateY(0);
+.btn-primary { 
+    box-shadow: 0 4px 15px rgba(254, 70, 2, 0.25); 
+    transform: translateY(0);
     background: linear-gradient(135deg, var(--brand-orange) 0%, var(--brand-gold) 100%);
     color: white !important;
     border: none;
 }
-.btn-primary:hover { box-shadow: 0 6px 20px rgba(254, 70, 2, 0.5); transform: translateY(-2px); } .btn-primary::before {
+.btn-primary:hover { 
+    box-shadow: 0 6px 20px rgba(254, 70, 2, 0.45); 
+    transform: translateY(-2px); 
+} 
+.btn-primary::before {
     background: linear-gradient(135deg, var(--brand-gold) 0%, var(--brand-orange) 100%);
 }
 
@@ -554,7 +564,6 @@ a:hover {
 .price-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
     padding: 32px;
     text-align: center;
     transition: all var(--transition);
@@ -606,25 +615,25 @@ a:hover {
     flex-shrink: 0;
 }
 
-/* ── Badge Types (Calendrier page) ── */
+/* ── Badge Types (Calendrier page - Sharp Square DA) ── */
 .badge-type {
     display: inline-block;
     padding: 4px 10px;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    border-radius: 20px;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
 }
 .bg-loisir {
     background: var(--brand-blue-glow);
     color: var(--brand-blue);
-    border: 1px solid var(--brand-blue);
+    border-color: var(--brand-blue);
 }
 .bg-pro {
     background: var(--brand-orange-glow);
     color: var(--brand-orange);
-    border: 1px solid var(--brand-orange);
+    border-color: var(--brand-orange);
 }
 
 /* ── Contact Page ── */
@@ -654,23 +663,26 @@ a:hover {
 .contact-icon {
     width: 48px;
     height: 48px;
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    border: 1px solid transparent;
 }
 .contact-icon-orange {
     background: var(--brand-orange-glow);
     color: var(--brand-orange);
+    border-color: var(--brand-orange);
 }
 .contact-icon-blue {
     background: var(--brand-blue-glow);
     color: var(--brand-blue);
+    border-color: var(--brand-blue);
 }
 .contact-icon-gold {
     background: var(--brand-gold-glow);
     color: var(--brand-gold);
+    border-color: var(--brand-gold);
 }
 
 /* Form confirmation message */
@@ -679,7 +691,6 @@ a:hover {
     padding: 16px 20px;
     background: rgba(5, 150, 105, 0.08);
     border: 1px solid var(--green);
-    border-radius: 8px;
     color: var(--green);
     font-weight: 600;
     text-align: center;
@@ -689,7 +700,7 @@ a:hover {
     display: block;
 }
 
-/* ── Interactive Monthly Calendar Widget ── */
+/* ── Interactive Monthly Calendar Widget (Sharp Geometric Square DA) ── */
 .cal-wrapper {
     max-width: 1100px;
     margin: 0 auto;
@@ -703,7 +714,6 @@ a:hover {
     gap: 16px;
     background: var(--bg-card);
     padding: 20px 24px;
-    border-radius: 12px;
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
     margin-bottom: 24px;
@@ -718,7 +728,6 @@ a:hover {
 .cal-nav-btn {
     background: var(--bg-base);
     border: 1px solid var(--border);
-    border-radius: 8px;
     width: 38px;
     height: 38px;
     display: flex;
@@ -755,13 +764,14 @@ a:hover {
     background: var(--bg-base);
     border: 1px solid var(--border);
     padding: 8px 16px;
-    border-radius: 20px;
     font-family: var(--font-heading);
     font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     color: var(--text-muted);
     transition: all var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 .cal-tab-btn:hover {
     color: var(--brand-orange);
@@ -776,7 +786,7 @@ a:hover {
 .cal-filter-bar {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
@@ -784,12 +794,13 @@ a:hover {
     background: transparent;
     border: 1px solid var(--border);
     padding: 6px 14px;
-    border-radius: 20px;
     font-size: 0.85rem;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     color: var(--text-muted);
     transition: all var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 .cal-filter-btn:hover,
 .cal-filter-btn.active {
@@ -812,14 +823,12 @@ a:hover {
     display: flex;
     background: var(--bg-base);
     padding: 4px;
-    border-radius: 8px;
     border: 1px solid var(--border);
 }
 .cal-view-btn {
     border: none;
     background: transparent;
     padding: 6px 12px;
-    border-radius: 6px;
     font-family: var(--font-heading);
     font-size: 0.85rem;
     font-weight: 700;
@@ -829,6 +838,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 6px;
+    text-transform: uppercase;
 }
 .cal-view-btn.active {
     background: white;
@@ -836,10 +846,9 @@ a:hover {
     box-shadow: var(--shadow-sm);
 }
 
-/* ── Calendar Monthly Grid ── */
+/* ── Calendar Monthly Grid (Square DA) ── */
 .cal-grid-card {
     background: var(--bg-card);
-    border-radius: 12px;
     border: 1px solid var(--border);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
@@ -866,7 +875,7 @@ a:hover {
 }
 
 .cal-day-cell {
-    min-height: 110px;
+    min-height: 115px;
     border-right: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     padding: 8px;
@@ -880,7 +889,7 @@ a:hover {
 }
 .cal-day-cell.other-month {
     background: var(--bg-base);
-    opacity: 0.4;
+    opacity: 0.35;
 }
 .cal-day-cell.weekend {
     background: #FAFBFD;
@@ -900,7 +909,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
+    border: 1px solid transparent;
 }
 .cal-day-cell.today .cal-day-num {
     background: var(--brand-orange);
@@ -909,18 +918,19 @@ a:hover {
 
 .cal-event-pill {
     margin-bottom: 4px;
-    padding: 4px 8px;
-    border-radius: 6px;
+    padding: 5px 8px;
     font-size: 0.78rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.3;
     cursor: pointer;
     transition: all 0.2s ease;
-    border-left: 3px solid transparent;
+    border-left: 4px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 .cal-event-pill:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transform: translateX(2px);
+    box-shadow: var(--shadow-sm);
 }
 
 .cal-event-pill.event-loisir {
@@ -938,7 +948,7 @@ a:hover {
     text-decoration: line-through;
 }
 
-/* Event List Card Details Below Grid */
+/* Event List Card Details Below Grid (Square DA) */
 .cal-events-list {
     margin-top: 30px;
 }
@@ -946,7 +956,6 @@ a:hover {
 .cal-stage-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
     padding: 24px;
     margin-bottom: 16px;
     display: flex;
@@ -995,7 +1004,7 @@ table {
     margin-bottom: 24px;
     background: var(--bg-card);
     box-shadow: var(--shadow-sm);
-    border-radius: 8px;
+    border: 1px solid var(--border);
 }
 th, td {
     padding: 20px;
@@ -1157,7 +1166,7 @@ tbody tr:hover {
     }
 }
 
-/* ── Forms ── */
+/* ── Forms (Sharp Square DA) ── */
 .form-group {
     margin-bottom: 24px;
 }
@@ -1175,7 +1184,6 @@ tbody tr:hover {
     width: 100%;
     padding: 16px;
     border: 2px solid var(--border);
-    border-radius: 8px;
     font-family: var(--font-body);
     font-size: 1.1rem;
     background: var(--bg-input);

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier — Parapente.pro</title>
-    <meta name="description" content="Planning des stages de parapente saison 2026 : dates, niveaux requis et disponibilités.">
+    <meta name="description" content="Planning interactif des stages de parapente saison 2026 : grille mensuelle, dates, niveaux et disponibilités.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -41,77 +41,19 @@
     <header class="hero" style="background-image: url('assets/banner_appi.jpg'); padding: 60px 5%;">
         <div class="hero-content">
             <h1 class="hero-title">Calendrier des Stages</h1>
-            <p class="hero-subtitle">Retrouvez toutes les dates de nos formations loisir et professionnelles.</p>
+            <p class="hero-subtitle">Consultez le planning mensuel de nos formations loisir et professionnelles pour la saison 2026.</p>
         </div>
     </header>
 
     <section class="section section-light">
-        <div class="table-container" style="max-width: 900px; margin: 0 auto;">
+        <div class="cal-wrapper">
             
-            <div style="display:flex; justify-content:flex-end; margin-bottom: 16px; gap: 12px;">
-                <span class="badge-type bg-loisir">Formations (Grand Public)</span>
-                <span class="badge-type bg-pro">Formations PRO</span>
-            </div>
+            <!-- Calendrier Interactif (Grille mensuelle, filtres & bascule de vue) -->
+            <div id="interactive-calendar"></div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Formation</th>
-                        <th>Niveau requis</th>
-                        <th>Type</th>
-                        <th>Disponibilité</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>12 - 16 Mai 2026</td>
-                        <td><strong>Stage Initial (Student)</strong></td>
-                        <td>Débutant</td>
-                        <td><span class="badge-type bg-loisir">Loisir</span></td>
-                        <td style="color: var(--green); font-weight: 600;">Places dispo</td>
-                    </tr>
-                    <tr>
-                        <td>02 - 06 Juin 2026</td>
-                        <td><strong>Stage Cross</strong></td>
-                        <td>APPI Pilot</td>
-                        <td><span class="badge-type bg-loisir">Loisir</span></td>
-                        <td style="color: var(--brand-gold); font-weight: 600;">Presque complet</td>
-                    </tr>
-                    <tr>
-                        <td>15 - 19 Juin 2026</td>
-                        <td><strong>Biplace PRO (Commercial)</strong></td>
-                        <td>Biplace Non-Co</td>
-                        <td><span class="badge-type bg-pro">PRO</span></td>
-                        <td style="color: var(--green); font-weight: 600;">Places dispo</td>
-                    </tr>
-                    <tr>
-                        <td>06 - 08 Juillet 2026</td>
-                        <td><strong>Stage SIV</strong></td>
-                        <td>APPI Pilot</td>
-                        <td><span class="badge-type bg-loisir">Loisir</span></td>
-                        <td style="color: var(--red); font-weight: 600;">Complet</td>
-                    </tr>
-                    <tr>
-                        <td>01 - 10 Août 2026</td>
-                        <td><strong>Formation Assistant Instructeur</strong></td>
-                        <td>Advanced Pilot</td>
-                        <td><span class="badge-type bg-pro">PRO</span></td>
-                        <td style="color: var(--green); font-weight: 600;">Places dispo</td>
-                    </tr>
-                    <tr>
-                        <td>12 - 20 Septembre 2026</td>
-                        <td><strong>Voyage à la carte (Dune du Pilat)</strong></td>
-                        <td>Student +</td>
-                        <td><span class="badge-type bg-loisir">Loisir</span></td>
-                        <td style="color: var(--green); font-weight: 600;">Places dispo</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div style="text-align: center; margin-top: 30px;">
+            <div style="text-align: center; margin-top: 50px;">
                 <p style="color: var(--text-muted); margin-bottom: 20px;">Vous ne trouvez pas la date ou la formation que vous cherchez ?</p>
-                <a href="contact.html" class="btn btn-outline">Nous contacter</a>
+                <a href="contact.html" class="btn btn-outline">Nous contacter pour une date sur-mesure</a>
             </div>
 
         </div>

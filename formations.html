@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formations — Parapente.pro</title>
+    <meta name="description" content="Stages de parapente loisir : biplace, cross, SIV, visio, voyages et coaching individuel à Barrême.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,13 +16,13 @@
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">
-        <img src="assets/logo_parapentepro.png" alt="Logo">
+        <img src="assets/logo_parapentepro.png" alt="Parapente.pro — École de parapente">
         <div>
             <div class="nav-brand-text">Parapente.pro</div>
             <div class="nav-brand-sub">École &amp; Progression APPI</div>
         </div>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="nav-links">
@@ -48,7 +49,7 @@
         <div class="grid-cards">
             
             <div class="card">
-                <div class="card-img" style="background-image: url('assets/lvl_student.jpg'); filter: hue-rotate(45deg);"></div>
+                <div class="card-img" style="background-image: url('assets/lvl_student.jpg');"></div>
                 <div class="card-content">
                     <h3 class="card-title">Biplace — Non commercial</h3>
                     <p class="card-desc">Formation pour apprendre à voler en biplace dans un cadre associatif ou familial. Partagez votre passion en toute sécurité avec vos proches.</p>
@@ -66,7 +67,7 @@
             </div>
 
             <div class="card">
-                <div class="card-img" style="background-image: url('assets/lvl_expert.jpg'); filter: saturate(1.5);"></div>
+                <div class="card-img" style="background-image: url('assets/lvl_expert.jpg');"></div>
                 <div class="card-content">
                     <h3 class="card-title">Stage SIV (Simulation d'Incidents de Vol)</h3>
                     <p class="card-desc">Maîtrisez votre voile dans toutes les configurations : fermetures, autorotation, décrochage. Indispensable pour votre sécurité active.</p>
@@ -75,7 +76,9 @@
             </div>
 
             <div class="card">
-                <div class="card-img" style="background-color: #0F172A;"></div>
+                <div class="card-img-icon" style="background-color: #0F172A;">
+                    <svg width="64" height="64" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Visio & Théorie</h3>
                     <p class="card-desc">Cours théoriques en visioconférence : météo avancée, lecture des émagrammes, réglementation, préparation mentale.</p>
@@ -84,7 +87,9 @@
             </div>
 
             <div class="card">
-                <div class="card-img" style="background-color: #fe4602;"></div>
+                <div class="card-img-icon" style="background-color: var(--brand-orange);">
+                    <svg width="64" height="64" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Voyage à la carte</h3>
                     <p class="card-desc">Séjours itinérants en France ou à l'étranger. Découvrez de nouveaux sites de vol avec un encadrement professionnel.</p>
@@ -93,7 +98,9 @@
             </div>
 
             <div class="card">
-                <div class="card-img" style="background-color: #FFB800;"></div>
+                <div class="card-img-icon" style="background-color: var(--brand-gold);">
+                    <svg width="64" height="64" fill="none" stroke="white" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
                 <div class="card-content">
                     <h3 class="card-title">Coaching Individuel</h3>
                     <p class="card-desc">Analyse vidéo, débriefing de traces GPS, accompagnement personnalisé pour atteindre vos objectifs spécifiques.</p>
@@ -106,11 +113,16 @@
 
 </div>
 
+<!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Parapente.pro</h4>
-            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p>École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p style="margin-top: 10px;">
+                <strong>WhatsApp :</strong> +33 6 00 00 00 00<br>
+                <strong>Email :</strong> contact@parapente.pro
+            </p>
         </div>
         <div class="footer-col">
             <h4>Liens utiles</h4>

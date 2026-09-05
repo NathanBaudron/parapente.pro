@@ -1,4 +1,4 @@
-﻿/* ═══════════════════════════════════════════════════════════
+/* ═══════════════════════════════════════════════════════════
    APPI PRO — styles.css
    Art Direction: Premium Light Website with Orange/Gold accents
    Clean, polished, image-heavy, high contrast
@@ -13,9 +13,9 @@
     --border:         #E2E8F0;
     --border-light:   #CBD5E1;
 
-    --dark-grey:     #343434; /* Heading Text */
-    --text-main:      #343434;  /* Main Body Text */
-    --text-muted:     #64748B;  /* Muted Text */
+    --dark-grey:     #343434;
+    --text-main:      #343434;
+    --text-muted:     #64748B;
     --text-dim:       #94A3B8;
 
     /* Logo Accents */
@@ -26,8 +26,9 @@
     
     /* Standard levels accents */
     --brand-blue:      #0284C7;
-    --brand-purple:    #7C3AED;
+    --brand-blue-glow: rgba(2, 132, 199, 0.08);
     --brand-red:       #E11D48;
+    --red:             #E11D48;
 
     --green:          #059669;
 
@@ -41,7 +42,7 @@
 
 /* ── Reset & Global ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 16px; scroll-behavior: smooth; } /* Increased base font size for Rajdhani */
+html { font-size: 16px; scroll-behavior: smooth; }
 body {
     font-family: var(--font-body);
     background: var(--bg-base);
@@ -326,6 +327,27 @@ a:hover {
     border-radius: 2px;
 }
 
+/* Left-aligned section title variant */
+.section-title-left {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--dark-grey);
+    margin-bottom: 24px;
+    text-align: left;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.section-title-left::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(to right, var(--brand-orange), var(--brand-gold));
+    margin: 16px 0 0;
+    border-radius: 2px;
+}
+
 /* ── Cards Grid (Formations) ── */
 .grid-cards {
     display: grid;
@@ -371,9 +393,6 @@ a:hover {
 .card:hover .card-img { border-radius: 12px 12px 0 0;
     transform: scale(1.05);
 }
-.card-img-wrapper {
-    overflow: hidden;
-}
 .card-content {
     padding: 30px;
     flex: 1;
@@ -398,6 +417,71 @@ a:hover {
     line-height: 1.6;
     margin-bottom: 30px;
     flex: 1;
+}
+
+/* Card image with centered icon (for cards without photos) */
+.card-img-icon {
+    border-radius: 12px 12px 0 0;
+    height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.6s ease;
+}
+.card:hover .card-img-icon {
+    transform: scale(1.05);
+}
+
+/* ── Level Cards (APPI page — horizontal layout with round photo) ── */
+.level-card {
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+.level-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--brand-orange), var(--brand-gold));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: left;
+    z-index: 10;
+}
+.level-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--border-light);
+}
+.level-card:hover::before {
+    transform: scaleX(1);
+}
+.level-card-img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    margin: 24px;
+    flex-shrink: 0;
+}
+.level-card-content {
+    padding: 24px 24px 24px 0;
+    flex: 1;
+}
+.level-card-content .card-title {
+    margin-bottom: 12px;
+}
+.level-card-content .card-desc {
+    margin-bottom: 0;
 }
 
 /* ── Buttons ── */
@@ -466,6 +550,145 @@ a:hover {
     color: white !important;
 }
 
+/* ── Price Cards (Tarifs page) ── */
+.price-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    text-align: center;
+    transition: all var(--transition);
+}
+.price-card:hover {
+    border-color: var(--brand-orange);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-6px);
+}
+.price-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark-grey);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+.price-amount {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--brand-orange);
+    margin-bottom: 24px;
+}
+.price-amount span {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+}
+.price-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px 0;
+    text-align: left;
+}
+.price-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.price-list li:last-child {
+    border-bottom: none;
+}
+.price-list svg {
+    color: var(--green);
+    flex-shrink: 0;
+}
+
+/* ── Badge Types (Calendrier page) ── */
+.badge-type {
+    display: inline-block;
+    padding: 4px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 4px;
+    letter-spacing: 0.03em;
+}
+.bg-loisir {
+    background: var(--brand-blue-glow);
+    color: var(--brand-blue);
+    border: 1px solid var(--brand-blue);
+}
+.bg-pro {
+    background: var(--brand-orange-glow);
+    color: var(--brand-orange);
+    border: 1px solid var(--brand-orange);
+}
+
+/* ── Contact Page ── */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+    margin: 0 auto;
+    gap: 40px;
+}
+.contact-info {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.contact-info h3 {
+    margin-bottom: 4px;
+    color: var(--dark-grey);
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+.contact-info p {
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+.contact-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.contact-icon-orange {
+    background: var(--brand-orange-glow);
+    color: var(--brand-orange);
+}
+.contact-icon-blue {
+    background: var(--brand-blue-glow);
+    color: var(--brand-blue);
+}
+.contact-icon-gold {
+    background: var(--brand-gold-glow);
+    color: var(--brand-gold);
+}
+
+/* Form confirmation message */
+.form-success {
+    display: none;
+    padding: 16px 20px;
+    background: rgba(5, 150, 105, 0.08);
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    color: var(--green);
+    font-weight: 600;
+    text-align: center;
+    margin-top: 16px;
+}
+.form-success.visible {
+    display: block;
+}
+
 /* ── Tables ── */
 .table-container {
     overflow-x: auto;
@@ -476,6 +699,7 @@ table {
     margin-bottom: 24px;
     background: var(--bg-card);
     box-shadow: var(--shadow-sm);
+    border-radius: 8px;
 }
 th, td {
     padding: 20px;
@@ -498,6 +722,17 @@ tbody tr:hover {
     background: var(--bg-card-hover);
 }
 
+/* Table utility classes */
+.text-bold { font-weight: 600; }
+.link-action {
+    color: var(--brand-orange);
+    font-weight: 600;
+    transition: color var(--transition);
+}
+.link-action:hover {
+    color: var(--brand-gold);
+}
+
 /* ── Footer ── */
 .footer {
     background: var(--dark-grey);
@@ -518,6 +753,10 @@ tbody tr:hover {
     margin-bottom: 24px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+}
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 .footer-col ul {
     list-style: none;
@@ -575,12 +814,36 @@ tbody tr:hover {
     .hero-title { font-size: 3rem; }
     .hero-fullscreen .hero-title { font-size: 3.5rem; }
 }
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    .level-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    .level-card-img {
+        margin: 24px auto 0;
+    }
+    .level-card-content {
+        padding: 24px;
+    }
+    .section {
+        padding: 60px 5%;
+    }
+    .grid-cards {
+        gap: 24px;
+    }
+}
+
 @media (max-width: 600px) {
     .hero-title { font-size: 2.5rem; }
     .hero-fullscreen .hero-title { font-size: 2.8rem; }
+    .section-title { font-size: 2rem; }
 }
 
-/* Forms */
+/* ── Forms ── */
 .form-group {
     margin-bottom: 24px;
 }
@@ -598,6 +861,7 @@ tbody tr:hover {
     width: 100%;
     padding: 16px;
     border: 2px solid var(--border);
+    border-radius: 8px;
     font-family: var(--font-body);
     font-size: 1.1rem;
     background: var(--bg-input);
@@ -613,14 +877,28 @@ textarea.form-control {
     resize: vertical;
 }
 
+/* ── Utility Classes ── */
 .text-center { text-align: center; }
 .mt-4 { margin-top: 1.5rem; }
 .mb-2 { margin-bottom: 0.5rem; }
+.w-full { width: 100%; }
+.text-orange { color: var(--brand-orange); }
+.text-blue { color: var(--brand-blue); }
+.text-red { color: var(--brand-red); }
+.text-gold { color: var(--brand-gold); }
+
+/* ── Hero CTA Group ── */
+.hero-cta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
 
 /* ── Page Transitions ── */
 body {
     animation: pageFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0; /* Starts hidden to allow animation to reveal */
+    opacity: 0;
 }
 body.fade-out {
     opacity: 0 !important;

@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le Système APPI — Parapente.pro</title>
+    <meta name="description" content="Découvrez le système éducatif APPI : progression internationale, standardisée et sécurisée pour les pilotes de parapente.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,13 +16,13 @@
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">
-        <img src="assets/logo_parapentepro.png" alt="Logo">
+        <img src="assets/logo_parapentepro.png" alt="Parapente.pro — École de parapente">
         <div>
             <div class="nav-brand-text">Parapente.pro</div>
             <div class="nav-brand-sub">École &amp; Progression APPI</div>
         </div>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="nav-links">
@@ -46,7 +47,7 @@
     </header>
 
     <!-- ── CONTENU ── -->
-    <section class="section">
+    <section class="section section-light">
         <div style="max-width: 800px; margin: 0 auto;">
             <h2 class="section-title">Qu'est-ce que la formation APPI ?</h2>
             <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 24px;">
@@ -58,27 +59,27 @@
 
             <h2 class="section-title" style="margin-top: 60px;">Les Niveaux de Progression</h2>
             
-            <div class="grid-cards" style="grid-template-columns: 1fr; gap: 24px;">
-                <div class="card" style="flex-direction: row; align-items: center;">
-                    <div class="card-img" style="width: 150px; height: 150px; background-image: url('assets/lvl_student.jpg'); border-radius: 50%; margin: 24px;"></div>
-                    <div class="card-content" style="padding-left: 0;">
-                        <h3 class="card-title" style="color: var(--brand-orange);">Open Sky / Adventure Pilot (Student)</h3>
+            <div style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="level-card">
+                    <div class="level-card-img" style="background-image: url('assets/lvl_student.jpg');"></div>
+                    <div class="level-card-content">
+                        <h3 class="card-title text-orange">Open Sky / Adventure Pilot (Student)</h3>
                         <p class="card-desc">Initiation, découverte du matériel, gonflage et premiers grands vols encadrés par radio.</p>
                     </div>
                 </div>
 
-                <div class="card" style="flex-direction: row; align-items: center;">
-                    <div class="card-img" style="width: 150px; height: 150px; background-image: url('assets/lvl_pilot.jpg'); border-radius: 50%; margin: 24px;"></div>
-                    <div class="card-content" style="padding-left: 0;">
-                        <h3 class="card-title" style="color: var(--brand-blue);">APPI Pilot</h3>
+                <div class="level-card">
+                    <div class="level-card-img" style="background-image: url('assets/lvl_pilot.jpg');"></div>
+                    <div class="level-card-content">
+                        <h3 class="card-title text-blue">APPI Pilot</h3>
                         <p class="card-desc">L'autonomie sur site connu. Vous validez vos connaissances théoriques, l'analyse météo et les approches.</p>
                     </div>
                 </div>
 
-                <div class="card" style="flex-direction: row; align-items: center;">
-                    <div class="card-img" style="width: 150px; height: 150px; background-image: url('assets/lvl_expert.jpg'); border-radius: 50%; margin: 24px;"></div>
-                    <div class="card-content" style="padding-left: 0;">
-                        <h3 class="card-title" style="color: var(--brand-gold);">Advanced Pilot (Expert)</h3>
+                <div class="level-card">
+                    <div class="level-card-img" style="background-image: url('assets/lvl_expert.jpg');"></div>
+                    <div class="level-card-content">
+                        <h3 class="card-title text-gold">Advanced Pilot (Expert)</h3>
                         <p class="card-desc">Vol de distance (Cross), exploitation des thermiques, maîtrise des techniques de descente rapide (SIV).</p>
                     </div>
                 </div>
@@ -97,7 +98,11 @@
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Parapente.pro</h4>
-            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p>École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p style="margin-top: 10px;">
+                <strong>WhatsApp :</strong> +33 6 00 00 00 00<br>
+                <strong>Email :</strong> contact@parapente.pro
+            </p>
         </div>
         <div class="footer-col">
             <h4>Liens utiles</h4>

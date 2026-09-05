@@ -1,78 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarifs — Parapente.pro</title>
+    <meta name="description" content="Tarifs transparents pour les formations parapente loisir et professionnelles APPI à Barrême.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/logo_parapentepro.png">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .price-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 32px;
-            text-align: center;
-            transition: all var(--transition);
-        }
-        .price-card:hover {
-            border-color: var(--brand-orange);
-            box-shadow: var(--shadow-md);
-        }
-        .price-title {
-            font-family: var(--font-heading);
-            font-size: 1.25rem;
-            color: var(--text-white);
-            margin-bottom: 16px;
-        }
-        .price-amount {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--brand-orange);
-            margin-bottom: 24px;
-        }
-        .price-amount span {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-        }
-        .price-list {
-            list-style: none;
-            padding: 0;
-            margin: 0 0 32px 0;
-            text-align: left;
-        }
-        .price-list li {
-            padding: 12px 0;
-            border-bottom: 1px solid var(--border);
-            color: var(--text-main);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .price-list li:last-child {
-            border-bottom: none;
-        }
-        .price-list svg {
-            color: var(--green);
-            flex-shrink: 0;
-        }
-    </style>
 </head>
 <body>
 
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">
-        <img src="assets/logo_parapentepro.png" alt="Logo">
+        <img src="assets/logo_parapentepro.png" alt="Parapente.pro — École de parapente">
         <div>
             <div class="nav-brand-text">Parapente.pro</div>
             <div class="nav-brand-sub">École &amp; Progression APPI</div>
         </div>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="nav-links">
@@ -88,7 +38,7 @@
 
 <div class="page-container">
 
-    <header class="hero" style="background-image: url('assets/lvl_student.jpg'); padding: 60px 5%; filter: grayscale(20%);">
+    <header class="hero" style="background-image: url('assets/lvl_student.jpg'); padding: 60px 5%;">
         <div class="hero-content">
             <h1 class="hero-title">Nos Tarifs</h1>
             <p class="hero-subtitle">Des prix transparents pour votre progression APPI, du loisir à la professionnalisation.</p>
@@ -97,7 +47,7 @@
 
     <section class="section section-light" id="formations">
         <h2 class="section-title">Tarifs Formations (Loisir)</h2>
-        <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+        <div class="grid-cards">
             
             <div class="price-card">
                 <h3 class="price-title">Stage Initiation (5 jours)</h3>
@@ -107,7 +57,7 @@
                     <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Carnet de vol APPI</li>
                     <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Encadrement 2 moniteurs</li>
                 </ul>
-                <a href="contact.html" class="btn btn-outline w-full" style="width:100%">Réserver</a>
+                <a href="contact.html" class="btn btn-outline w-full">Réserver</a>
             </div>
 
             <div class="price-card">
@@ -118,7 +68,7 @@
                     <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Validation Pilot APPI</li>
                     <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Optimisation thermique</li>
                 </ul>
-                <a href="contact.html" class="btn btn-outline w-full" style="width:100%">Réserver</a>
+                <a href="contact.html" class="btn btn-outline w-full">Réserver</a>
             </div>
 
             <div class="price-card">
@@ -129,7 +79,7 @@
                     <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Gilet de sauvetage fourni</li>
                     <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Débriefing vidéo inclus</li>
                 </ul>
-                <a href="contact.html" class="btn btn-outline w-full" style="width:100%">Réserver</a>
+                <a href="contact.html" class="btn btn-outline w-full">Réserver</a>
             </div>
 
         </div>
@@ -151,42 +101,47 @@
                     <tr>
                         <td><strong>Qualification Biplace Non Commercial</strong></td>
                         <td>5 jours</td>
-                        <td style="font-weight: 600;">600 €</td>
-                        <td><a href="contact.html" style="color: var(--brand-orange); font-weight:600;">Détails &rarr;</a></td>
+                        <td class="text-bold">600 €</td>
+                        <td><a href="contact.html" class="link-action">Détails &rarr;</a></td>
                     </tr>
                     <tr>
                         <td><strong>Formation Biplace PRO (Commercial)</strong></td>
                         <td>2 semaines</td>
-                        <td style="font-weight: 600;">Sur devis</td>
-                        <td><a href="contact.html" style="color: var(--brand-orange); font-weight:600;">Détails &rarr;</a></td>
+                        <td class="text-bold">Sur devis</td>
+                        <td><a href="contact.html" class="link-action">Détails &rarr;</a></td>
                     </tr>
                     <tr>
                         <td><strong>Formation Assistant Instructeur APPI</strong></td>
                         <td>10 jours</td>
-                        <td style="font-weight: 600;">1200 €</td>
-                        <td><a href="contact.html" style="color: var(--brand-orange); font-weight:600;">Détails &rarr;</a></td>
+                        <td class="text-bold">1200 €</td>
+                        <td><a href="contact.html" class="link-action">Détails &rarr;</a></td>
                     </tr>
                     <tr>
                         <td><strong>Validation Instructeur APPI (Examen)</strong></td>
                         <td>3 jours</td>
-                        <td style="font-weight: 600;">450 €</td>
-                        <td><a href="contact.html" style="color: var(--brand-orange); font-weight:600;">Détails &rarr;</a></td>
+                        <td class="text-bold">450 €</td>
+                        <td><a href="contact.html" class="link-action">Détails &rarr;</a></td>
                     </tr>
                 </tbody>
             </table>
             <p style="text-align: center; color: var(--text-muted); margin-top: 20px; font-size: 0.9rem;">
-                * Des aides au financement peuvent être possibles (AFDAS, etc.) selon votre statut. <a href="contact.html" style="color: var(--brand-orange);">Contactez-nous</a>.
+                * Des aides au financement peuvent être possibles (AFDAS, etc.) selon votre statut. <a href="contact.html" class="link-action">Contactez-nous</a>.
             </p>
         </div>
     </section>
 
 </div>
 
+<!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Parapente.pro</h4>
-            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p>École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p style="margin-top: 10px;">
+                <strong>WhatsApp :</strong> +33 6 00 00 00 00<br>
+                <strong>Email :</strong> contact@parapente.pro
+            </p>
         </div>
         <div class="footer-col">
             <h4>Liens utiles</h4>

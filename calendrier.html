@@ -1,39 +1,28 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calendrier — Parapente.pro</title>
+    <meta name="description" content="Planning des stages de parapente saison 2026 : dates, niveaux requis et disponibilités.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/logo_parapentepro.png">
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .badge-type {
-            display: inline-block;
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 4px;
-        }
-        .bg-loisir { background: var(--brand-blue-glow); color: var(--brand-blue); border: 1px solid var(--brand-blue); }
-        .bg-pro { background: var(--brand-orange-glow); color: var(--brand-orange); border: 1px solid var(--brand-orange); }
-    </style>
 </head>
 <body>
 
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">
-        <img src="assets/logo_parapentepro.png" alt="Logo">
+        <img src="assets/logo_parapentepro.png" alt="Parapente.pro — École de parapente">
         <div>
             <div class="nav-brand-text">Parapente.pro</div>
             <div class="nav-brand-sub">École &amp; Progression APPI</div>
         </div>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="nav-links">
@@ -130,11 +119,16 @@
 
 </div>
 
+<!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Parapente.pro</h4>
-            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p>École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p style="margin-top: 10px;">
+                <strong>WhatsApp :</strong> +33 6 00 00 00 00<br>
+                <strong>Email :</strong> contact@parapente.pro
+            </p>
         </div>
         <div class="footer-col">
             <h4>Liens utiles</h4>

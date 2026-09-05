@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espace PRO — Parapente.pro</title>
+    <meta name="description" content="Formations professionnelles APPI : biplace commercial, assistant instructeur et instructeur à Barrême.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,13 +16,13 @@
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">
-        <img src="assets/logo_parapentepro.png" alt="Logo">
+        <img src="assets/logo_parapentepro.png" alt="Parapente.pro — École de parapente">
         <div>
             <div class="nav-brand-text">Parapente.pro</div>
             <div class="nav-brand-sub">École &amp; Progression APPI</div>
         </div>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="nav-links">
@@ -48,7 +49,7 @@
         <h2 class="section-title">Formations Biplace</h2>
         <div class="grid-cards" style="margin-bottom: 60px;">
             <div class="card">
-                <div class="card-img" style="background-image: url('assets/lvl_student.jpg'); filter: hue-rotate(45deg);"></div>
+                <div class="card-img" style="background-image: url('assets/lvl_student.jpg');"></div>
                 <div class="card-content">
                     <h3 class="card-title">Biplace — Non Commercial</h3>
                     <p class="card-desc">Prérequis pour accéder à la filière pro. Apprenez à emmener vos proches en toute sécurité dans un cadre associatif.</p>
@@ -57,9 +58,9 @@
             </div>
             
             <div class="card">
-                <div class="card-img" style="background-image: url('assets/lvl_instructor.jpg'); filter: grayscale(50%);"></div>
+                <div class="card-img" style="background-image: url('assets/lvl_instructor.jpg');"></div>
                 <div class="card-content">
-                    <h3 class="card-title" style="color: var(--brand-orange);">Biplace — PRO (Commercial)</h3>
+                    <h3 class="card-title text-orange">Biplace — PRO (Commercial)</h3>
                     <p class="card-desc">Formation APPI Tandem Pro. Destinée aux pilotes souhaitant exercer l'activité de pilote biplaceur contre rémunération.</p>
                     <a href="contact.html" class="btn btn-primary">En savoir plus</a>
                 </div>
@@ -69,9 +70,9 @@
         <h2 class="section-title">Filière Instructeur APPI</h2>
         <div class="grid-cards">
             <div class="card">
-                <div class="card-img" style="background-image: url('assets/lvl_expert.jpg'); filter: saturate(1.2) hue-rotate(-20deg);"></div>
+                <div class="card-img" style="background-image: url('assets/lvl_expert.jpg');"></div>
                 <div class="card-content">
-                    <h3 class="card-title" style="color: var(--brand-blue);">Assistant Instructeur</h3>
+                    <h3 class="card-title text-blue">Assistant Instructeur</h3>
                     <p class="card-desc">Première étape vers l'enseignement. Apprenez à encadrer au sol et assister un instructeur certifié lors des cours théoriques et pratiques.</p>
                     <a href="contact.html" class="btn btn-outline">Candidater</a>
                 </div>
@@ -80,7 +81,7 @@
             <div class="card">
                 <div class="card-img" style="background-image: url('assets/lvl_master.jpg');"></div>
                 <div class="card-content">
-                    <h3 class="card-title" style="color: var(--brand-red);">Instructeur APPI</h3>
+                    <h3 class="card-title text-red">Instructeur APPI</h3>
                     <p class="card-desc">Devenez un professionnel de l'enseignement du vol libre. Formez les futurs pilotes jusqu'au niveau Advanced Pilot de manière autonome.</p>
                     <a href="contact.html" class="btn btn-primary">Candidater</a>
                 </div>
@@ -99,11 +100,16 @@
 
 </div>
 
+<!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Parapente.pro</h4>
-            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p>École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p style="margin-top: 10px;">
+                <strong>WhatsApp :</strong> +33 6 00 00 00 00<br>
+                <strong>Email :</strong> contact@parapente.pro
+            </p>
         </div>
         <div class="footer-col">
             <h4>Liens utiles</h4>

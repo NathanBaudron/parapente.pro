@@ -1,9 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — Parapente.pro</title>
+    <meta name="description" content="Contactez l'école Parapente.pro à Barrême pour réserver un stage ou poser vos questions.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -15,13 +16,13 @@
 <!-- ── NAVBAR ── -->
 <nav class="navbar">
     <a href="index.html" class="nav-brand">
-        <img src="assets/logo_parapentepro.png" alt="Logo">
+        <img src="assets/logo_parapentepro.png" alt="Parapente.pro — École de parapente">
         <div>
             <div class="nav-brand-text">Parapente.pro</div>
             <div class="nav-brand-sub">École &amp; Progression APPI</div>
         </div>
     </a>
-    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('active')">
+    <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
     <div class="nav-links">
@@ -37,7 +38,7 @@
 
 <div class="page-container">
 
-    <header class="hero" style="background-image: url('assets/banner_appi.jpg'); padding: 60px 5%; filter: sepia(0.3) hue-rotate(-20deg);">
+    <header class="hero" style="background-image: url('assets/banner_appi.jpg'); padding: 60px 5%;">
         <div class="hero-content">
             <h1 class="hero-title">Contactez-nous</h1>
             <p class="hero-subtitle">Une question ? Une réservation ? Notre équipe est à votre écoute.</p>
@@ -45,47 +46,47 @@
     </header>
 
     <section class="section section-light">
-        <div class="grid-cards" style="grid-template-columns: 1fr 1fr; max-width: 1000px; margin: 0 auto; gap: 40px;">
+        <div class="contact-grid">
             
             <!-- Informations de contact direct -->
-            <div class="card" style="box-shadow: none; border: none; background: transparent;">
-                <h2 class="section-title" style="text-align: left; margin-bottom: 24px;">Nos Coordonnées</h2>
+            <div>
+                <h2 class="section-title-left">Nos Coordonnées</h2>
                 
-                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-                    <div style="background: var(--brand-orange-glow); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-orange); flex-shrink: 0;">
+                <div class="contact-info">
+                    <div class="contact-icon contact-icon-orange">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                     </div>
                     <div>
-                        <h3 style="margin-bottom: 4px; color: var(--text-white); font-family: var(--font-heading);">Téléphone / WhatsApp</h3>
-                        <p style="color: var(--text-muted);">+33 6 00 00 00 00</p>
+                        <h3>Téléphone / WhatsApp</h3>
+                        <p>+33 6 00 00 00 00</p>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-                    <div style="background: var(--brand-blue-glow); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-blue); flex-shrink: 0;">
+                <div class="contact-info">
+                    <div class="contact-icon contact-icon-blue">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                     </div>
                     <div>
-                        <h3 style="margin-bottom: 4px; color: var(--text-white); font-family: var(--font-heading);">E-mail</h3>
-                        <p style="color: var(--text-muted);">contact@hautlesmains.fr</p>
+                        <h3>E-mail</h3>
+                        <p>contact@parapente.pro</p>
                     </div>
                 </div>
 
-                <div style="display: flex; gap: 16px; margin-bottom: 24px;">
-                    <div style="background: var(--brand-gold-glow); width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--brand-gold); flex-shrink: 0;">
+                <div class="contact-info">
+                    <div class="contact-icon contact-icon-gold">
                         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                     </div>
                     <div>
-                        <h3 style="margin-bottom: 4px; color: var(--text-white); font-family: var(--font-heading);">École (Lieu de RDV)</h3>
-                        <p style="color: var(--text-muted);">Lieu-dit Le Village<br>04330 Barrême, France</p>
+                        <h3>École (Lieu de RDV)</h3>
+                        <p>Lieu-dit Le Village<br>04330 Barrême, France</p>
                     </div>
                 </div>
             </div>
 
             <!-- Formulaire -->
             <div class="card" style="padding: 32px;">
-                <h3 class="section-title" style="text-align: left; font-size: 1.5rem; margin-bottom: 24px;">Envoyez-nous un message</h3>
-                <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');">
+                <h3 class="section-title-left" style="font-size: 1.5rem;">Envoyez-nous un message</h3>
+                <form action="#" method="POST" data-contact-form>
                     <div class="form-group">
                         <label class="form-label" for="nom">Nom & Prénom</label>
                         <input type="text" id="nom" class="form-control" placeholder="Votre nom" required>
@@ -108,7 +109,8 @@
                         <label class="form-label" for="message">Message</label>
                         <textarea id="message" class="form-control" placeholder="Détaillez votre demande (niveau actuel, dates souhaitées...)" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary w-full" style="width: 100%;">Envoyer le message</button>
+                    <button type="submit" class="btn btn-primary w-full">Envoyer le message</button>
+                    <div class="form-success">✓ Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.</div>
                 </form>
             </div>
 
@@ -117,11 +119,16 @@
 
 </div>
 
+<!-- ── FOOTER ── -->
 <footer class="footer">
     <div class="footer-grid">
         <div class="footer-col">
             <h4>Parapente.pro</h4>
-            <p style="font-size: 0.9rem; line-height: 1.6;">École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p>École de parapente certifiée APPI.<br>Barrême, France.</p>
+            <p style="margin-top: 10px;">
+                <strong>WhatsApp :</strong> +33 6 00 00 00 00<br>
+                <strong>Email :</strong> contact@parapente.pro
+            </p>
         </div>
         <div class="footer-col">
             <h4>Liens utiles</h4>

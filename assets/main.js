@@ -54,17 +54,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ── Page Transition Fade Out ──
+    // ── Page Transition — Overlay Curtain System ──
+    // Inject the overlay div if not present
+    let overlay = document.querySelector('.page-transition-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'page-transition-overlay';
+        document.body.prepend(overlay);
+    }
+    // On page load: play the reveal animation (curtain slides up)
+    requestAnimationFrame(() => {
+        overlay.classList.add('reveal');
+    });
+    overlay.addEventListener('animationend', function handler(e) {
+        if (e.animationName === 'curtainReveal') {
+            overlay.classList.add('hidden');
+            overlay.removeEventListener('animationend', handler);
+        }
+    });
+
+    // Intercept internal links: play cover animation, then navigate
     document.querySelectorAll('a').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const target = this.getAttribute('href');
             if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return;
             if (target && !target.startsWith('#') && !target.startsWith('http') && !target.startsWith('mailto') && !target.startsWith('tel') && this.getAttribute('target') !== '_blank') {
                 e.preventDefault();
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
+                const ov = document.querySelector('.page-transition-overlay');
+                if (ov) {
+                    ov.classList.remove('reveal', 'hidden');
+                    // Force reflow to reset animation
+                    void ov.offsetWidth;
+                    ov.classList.add('cover');
+                    ov.addEventListener('animationend', function navHandler() {
+                        ov.removeEventListener('animationend', navHandler);
+                        window.location.href = target;
+                    });
+                } else {
                     window.location.href = target;
-                }, 300);
+                }
             }
         });
     });
@@ -92,7 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
 // ── Bfcache Fix ──
 window.addEventListener('pageshow', (e) => {
     if (e.persisted) {
-        document.body.classList.remove('fade-out');
+        const ov = document.querySelector('.page-transition-overlay');
+        if (ov) {
+            ov.classList.remove('cover');
+            ov.classList.add('reveal');
+            ov.addEventListener('animationend', function handler() {
+                ov.classList.add('hidden');
+                ov.removeEventListener('animationend', handler);
+            });
+        }
     }
 });
 

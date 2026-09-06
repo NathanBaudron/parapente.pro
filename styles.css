@@ -1370,6 +1370,150 @@ textarea.form-control {
     flex-wrap: wrap;
 }
 
+/* ── APPI Page Components (Pillars, Master Highlight & Badges) ── */
+.pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+}
+.pillar-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition);
+}
+.pillar-card:hover {
+    border-color: var(--brand-orange);
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+.pillar-icon {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-base);
+    border: 2px solid var(--border);
+    margin-bottom: 20px;
+    color: var(--brand-orange);
+}
+.pillar-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--dark-grey);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    letter-spacing: 0.03em;
+}
+.pillar-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Master Spotlight Card */
+.master-spotlight {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    color: white;
+    padding: 48px;
+    border: 2px solid var(--brand-gold);
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin: 50px 0;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+.master-spotlight-img {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid var(--brand-gold);
+}
+.master-spotlight-content {
+    flex: 1;
+}
+.master-badge-gold {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--brand-orange), var(--brand-gold));
+    color: white;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+.master-title {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    letter-spacing: 0.03em;
+}
+.master-desc {
+    color: #cbd5e1;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 16px;
+}
+.master-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+}
+.master-point-item {
+    font-size: 0.95rem;
+    color: #f1f5f9;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.master-point-item svg {
+    color: var(--brand-gold);
+    flex-shrink: 0;
+}
+
+.level-tag {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 850px) {
+    .master-spotlight {
+        flex-direction: column;
+        padding: 30px;
+        text-align: center;
+    }
+    .master-spotlight-img {
+        margin: 0 auto;
+    }
+    .master-points {
+        text-align: left;
+    }
+}
+
 /* ── Page Transitions (Overlay Curtain) ── */
 body {
     opacity: 1;

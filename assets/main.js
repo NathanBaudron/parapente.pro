@@ -135,6 +135,7 @@ window.addEventListener('pageshow', (e) => {
 // ── Clean Native Multi-Language System (FR / EN / ES) ──
 const I18N_DICT = {
     en: {
+        // ── Navigation ──
         "Accueil": "Home",
         "L'École (APPI)": "The School (APPI)",
         "Formations": "Courses",
@@ -142,61 +143,209 @@ const I18N_DICT = {
         "Calendrier": "Calendar",
         "Tarifs": "Prices",
         "Contact": "Contact",
-        "Découvrir nos formations": "Discover our courses",
-        "Voir l'Espace PRO": "View PRO Area",
-        "En savoir plus": "Learn more",
-        "Espace dédié": "Dedicated area",
-        "Voir les dates": "View dates",
-        "Voir les tarifs": "View prices",
-        "Réserver": "Book now",
-        "Réserver ce stage": "Book this course",
-        "Candidater": "Apply",
-        "Nous contacter": "Contact us",
-        "Envoyer le message": "Send message",
+        "École &amp; Progression APPI": "School &amp; APPI Progression",
+
+        // ── Index — Hero ──
         "Volez plus haut,<br>volez plus loin": "Fly higher,<br>fly further",
         "École de parapente professionnelle. De l'initiation aux brevets instructeurs, découvrez la progression APPI avec des experts passionnés.": "Professional paragliding school. From beginner courses to instructor certifications, discover APPI progression with passionate experts.",
+        "Découvrir nos formations": "Discover our courses",
+        "Voir l'Espace PRO": "View PRO Area",
+
+        // ── Index — Quick Access ──
         "Accès Rapide": "Quick Access",
         "Formations & Stages": "Courses & Clinics",
+        "Formations &amp; Stages": "Courses &amp; Clinics",
         "Biplace, stages cross, SIV, voyages et coaching. Tout pour progresser à votre rythme.": "Tandem flights, XC clinics, SIV, trips and coaching. Everything to progress at your own pace.",
+        "En savoir plus": "Learn more",
+        "Espace dédié": "Dedicated area",
         "Filière instructeurs, biplaces commerciaux et formations professionnelles qualifiantes.": "Instructor path, commercial tandem, and professional training.",
         "Consultez toutes les dates de nos prochains stages, séjours et formations professionnelles.": "View all dates for our upcoming courses, trips, and professional training.",
+        "Voir les dates": "View dates",
         "Consultez notre grille tarifaire pour le grand public et les professionnels.": "Check our price list for leisure pilots and professionals.",
+        "Voir les tarifs": "View prices",
+
+        // ── Formations Page ──
         "Nos Formations": "Our Courses",
         "Pour les pilotes en quête de progression, de l'initiation au vol de distance.": "For pilots seeking progression, from initiation to cross-country flight.",
         "Biplace — Non commercial": "Tandem — Non-commercial",
         "Formation pour apprendre à voler en biplace dans un cadre associatif ou familial. Partagez votre passion en toute sécurité avec vos proches.": "Training to learn tandem flying in a club or family setting. Share your passion safely with your loved ones.",
+        "Réserver": "Book now",
+        "Réserver ce stage": "Book this course",
         "Stage Cross": "XC Clinic",
         "Apprenez à exploiter les ascendances thermiques, à transiter et à préparer vos vols de distance. Idéal pour valider le niveau Advanced Pilot.": "Learn to use thermals, transition and prepare your cross-country flights. Ideal to validate the Advanced Pilot level.",
         "Stage SIV (Simulation d'Incidents de Vol)": "SIV Clinic (Flight Incidents)",
         "Maîtrisez votre voile dans toutes les configurations : fermetures, autorotation, décrochage. Indispensable pour votre sécurité active.": "Master your glider in all configurations: collapses, autorotation, stalls. Essential for your active safety.",
         "Visio & Théorie": "Online Theory & Webinars",
+        "Visio &amp; Théorie": "Online Theory &amp; Webinars",
         "Cours théoriques en visioconférence : météo avancée, lecture des émagrammes, réglementation, préparation mentale.": "Online theory courses: advanced weather, emagram analysis, airspace regulations, mental preparation.",
         "Voyage à la carte": "Custom Trips",
         "Séjours itinérants en France ou à l'étranger. Découvrez de nouveaux sites de vol avec un encadrement professionnel.": "Guided flying trips in France or abroad. Discover new flying sites with professional coaching.",
         "Coaching Individuel": "Individual Coaching",
         "Analyse vidéo, débriefing de traces GPS, accompagnement personnalisé pour atteindre vos objectifs spécifiques.": "Video analysis, GPS track debriefing, personalized guidance to reach your specific goals.",
+
+        // ── Tarifs Page ──
         "Nos Tarifs": "Our Rates",
         "Des prix transparents pour votre progression APPI, du loisir à la professionnalisation.": "Transparent pricing for your APPI progression, from leisure to professional level.",
         "Tarifs Formations (Loisir)": "Leisure Course Rates",
         "Tarifs Espace PRO": "PRO Area Rates",
+        "Stage Initiation (5 jours)": "Beginner Course (5 days)",
+        "Prêt du matériel complet": "Full equipment loan",
+        "Carnet de vol APPI": "APPI logbook",
+        "Encadrement 2 moniteurs": "2 instructors supervision",
+        "Stage Perfectionnement": "Improvement Course",
+        "5 jours de formation": "5 days of training",
+        "Validation Pilot APPI": "APPI Pilot validation",
+        "Optimisation thermique": "Thermal optimization",
+        "Stage SIV (3 jours)": "SIV Course (3 days)",
+        "Bateau + Navette": "Boat + Shuttle",
+        "Gilet de sauvetage fourni": "Life jacket provided",
+        "Débriefing vidéo inclus": "Video debriefing included",
+        "Formation Professionnelle": "Professional Training",
+        "Durée": "Duration",
+        "Tarif": "Price",
+        "Action": "Action",
+        "Qualification Biplace Non Commercial": "Non-Commercial Tandem Qualification",
+        "5 jours": "5 days",
+        "Formation Biplace PRO (Commercial)": "PRO Tandem Training (Commercial)",
+        "2 semaines": "2 weeks",
+        "Sur devis": "On request",
+        "Formation Assistant Instructeur APPI": "APPI Assistant Instructor Training",
+        "10 jours": "10 days",
+        "Validation Instructeur APPI (Examen)": "APPI Instructor Validation (Exam)",
+        "3 jours": "3 days",
+        "Détails →": "Details →",
+
+        // ── Calendrier Page ──
         "Calendrier des Stages": "Course Schedule",
         "Consultez le planning mensuel de nos formations loisir et professionnelles pour la saison 2026.": "View the monthly schedule of our leisure and professional training for the 2026 season.",
+
+        // ── Contact Page ──
         "Contactez-nous": "Contact Us",
         "Une question ? Une réservation ? Notre équipe est à votre écoute.": "A question? A booking? Our team is at your service.",
         "Nos Coordonnées": "Contact Details",
         "Envoyez-nous un message": "Send us a message",
+        "Téléphone / WhatsApp": "Phone / WhatsApp",
+        "E-mail": "E-mail",
+        "École (Lieu de RDV)": "School (Meeting Point)",
+        "Lieu-dit Le Village<br>04330 Barrême, France": "Lieu-dit Le Village<br>04330 Barrême, France",
+        "Nom & Prénom": "Full Name",
+        "Nom &amp; Prénom": "Full Name",
+        "Sujet / Intérêt": "Subject / Interest",
+        "Message": "Message",
+        "Envoyer le message": "Send message",
+        "Sélectionnez un sujet...": "Select a subject...",
+        "Renseignement - Stage Loisir": "Inquiry - Leisure Course",
+        "Inscription - Stage SIV": "Registration - SIV Course",
+        "Candidature - Formation PRO": "Application - PRO Training",
+        "Autre demande": "Other request",
+        "✓ Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.": "✓ Message sent successfully! We will reply as soon as possible.",
+        "Nous contacter": "Contact us",
+
+        // ── APPI Page ──
         "Le Système Éducatif APPI": "The APPI Educational System",
         "Une progression internationale, standardisée et sécurisée.": "An international, standardized and safe progression.",
+        "Qu'est-ce que la formation APPI ?": "What is APPI training?",
+        "APPI (Association of Paragliding Pilots and Instructors) est une organisation internationale qui propose un système de certification et d'enseignement standardisé pour le vol libre.": "APPI (Association of Paragliding Pilots and Instructors) is an international organization offering a standardized certification and teaching system for free flight.",
+        "Ce cursus garantit que le pilote acquiert des compétences solides, tant théoriques que pratiques, à chaque étape de sa progression. Ces certifications sont reconnues dans le monde entier, facilitant la location de matériel ou la pratique à l'étranger.": "This curriculum ensures the pilot acquires solid skills, both theoretical and practical, at each stage of their progression. These certifications are recognized worldwide, facilitating equipment rental or flying abroad.",
+        "Les Niveaux de Progression": "Progression Levels",
+        "Initiation, découverte du matériel, gonflage et premiers grands vols encadrés par radio.": "Initiation, equipment discovery, inflation and first big flights supervised by radio.",
+        "L'autonomie sur site connu. Vous validez vos connaissances théoriques, l'analyse météo et les approches.": "Autonomy on known sites. You validate your theoretical knowledge, weather analysis and approaches.",
+        "Vol de distance (Cross), exploitation des thermiques, maîtrise des techniques de descente rapide (SIV).": "Cross-country flying, thermal exploitation, mastery of rapid descent techniques (SIV).",
+        "Voir nos Formations": "View our Courses",
+
+        // ── PRO Page ──
         "Espace Professionnel": "Professional Space",
         "Faites de votre passion un métier avec nos formations qualifiantes APPI.": "Turn your passion into a career with our APPI qualifying courses.",
         "Formations Biplace": "Tandem Training",
+        "Biplace — Non Commercial": "Tandem — Non-Commercial",
+        "Prérequis pour accéder à la filière pro. Apprenez à emmener vos proches en toute sécurité dans un cadre associatif.": "Prerequisite for the professional path. Learn to take your loved ones safely in a club setting.",
+        "Biplace — PRO (Commercial)": "Tandem — PRO (Commercial)",
+        "Formation APPI Tandem Pro. Destinée aux pilotes souhaitant exercer l'activité de pilote biplaceur contre rémunération.": "APPI Tandem Pro training. For pilots wishing to work as commercial tandem pilots.",
         "Filière Instructeur APPI": "APPI Instructor Course",
+        "Assistant Instructeur": "Assistant Instructor",
+        "Première étape vers l'enseignement. Apprenez à encadrer au sol et assister un instructeur certifié lors des cours théoriques et pratiques.": "First step towards teaching. Learn to supervise on the ground and assist a certified instructor during theoretical and practical courses.",
+        "Candidater": "Apply",
+        "Instructeur APPI": "APPI Instructor",
+        "Devenez un professionnel de l'enseignement du vol libre. Formez les futurs pilotes jusqu'au niveau Advanced Pilot de manière autonome.": "Become a free flight teaching professional. Train future pilots up to Advanced Pilot level independently.",
         "Nous rejoindre": "Join Us",
+        "Vous souhaitez intégrer notre équipe pédagogique ou vous inscrire à une formation qualifiante ? Contactez-nous pour étudier votre dossier et valider vos acquis.": "Want to join our teaching team or register for a qualifying course? Contact us to review your application and validate your qualifications.",
+        "Contact & Candidature PRO": "Contact & PRO Application",
+        "Contact &amp; Candidature PRO": "Contact &amp; PRO Application",
+
+        // ── Footer ──
+        "École de parapente certifiée APPI.<br>Barrême, France.": "APPI certified paragliding school.<br>Barrême, France.",
         "Liens utiles": "Useful links",
+        "Le Système APPI": "The APPI System",
         "Pratique": "Info",
-        "Contact & Accès": "Contact & Access"
+        "Contact & Accès": "Contact & Access",
+        "Contact &amp; Accès": "Contact &amp; Access",
+        "Informations légales": "Legal Information",
+        "Mentions légales": "Legal Notice",
+        "Politique de confidentialité": "Privacy Policy",
+        "Conditions d'utilisation": "Terms of Use",
+        "© 2026 Parapente.pro. Tous droits réservés.": "© 2026 Parapente.pro. All rights reserved.",
+
+        // ── Mentions Légales Page ──
+        "Informations juridiques obligatoires": "Mandatory legal information",
+        "Éditeur du site": "Website Publisher",
+        "Le site Parapente.pro est édité par Parapente.pro, situé à Barrême, France.": "The Parapente.pro website is published by Parapente.pro, located in Barrême, France.",
+        "Responsable de publication": "Publication Manager",
+        "[Nom du responsable]": "[Manager's name]",
+        "Hébergeur": "Hosting Provider",
+        "Le site est hébergé par GitHub Pages, GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.": "The site is hosted by GitHub Pages, GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.",
+        "Propriété intellectuelle": "Intellectual Property",
+        "L'ensemble du contenu (textes, images, vidéos, etc.) de ce site est protégé par le droit d'auteur. Toute reproduction est interdite sans autorisation préalable.": "All content (texts, images, videos, etc.) on this site is protected by copyright. Any reproduction is prohibited without prior authorization.",
+        "Crédits photos": "Photo Credits",
+        "Images : Parapente.pro, ou libres de droits sauf mention contraire.": "Images: Parapente.pro, or royalty-free unless otherwise noted.",
+
+        // ── Politique de Confidentialité Page ──
+        "Protection de vos données personnelles (RGPD)": "Protection of your personal data (GDPR)",
+        "Responsable du traitement des données": "Data Controller",
+        "Le responsable du traitement des données est Parapente.pro, joignable à l'adresse email suivante : contact@parapente.pro.": "The data controller is Parapente.pro, contactable at: contact@parapente.pro.",
+        "Types de données collectées": "Types of Data Collected",
+        "Lors de l'utilisation de notre formulaire de contact, nous collectons les données suivantes : nom, email, téléphone, et le contenu de votre message.": "When using our contact form, we collect the following data: name, email, phone, and your message content.",
+        "Finalité du traitement": "Purpose of Processing",
+        "Ces données sont utilisées uniquement dans le but de répondre à vos demandes de renseignements, inscriptions ou toute autre communication initiée par vos soins.": "This data is used solely to respond to your inquiries, registrations, or any other communication initiated by you.",
+        "Durée de conservation": "Data Retention Period",
+        "Les données personnelles sont conservées le temps nécessaire au traitement de votre demande, puis sont supprimées conformément aux obligations légales (maximum 3 ans d'inactivité).": "Personal data is retained for as long as necessary to process your request, then deleted in accordance with legal obligations (maximum 3 years of inactivity).",
+        "Cookies et traceurs": "Cookies and Trackers",
+        "Ce site utilise Google Fonts pour l'affichage de ses typographies, ce qui peut entraîner le dépôt de cookies tiers ou la collecte de votre adresse IP par Google.": "This site uses Google Fonts for typography display, which may result in third-party cookies or your IP address being collected by Google.",
+        "Droits des utilisateurs": "User Rights",
+        "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Pour exercer ces droits, veuillez nous contacter à l'adresse : contact@parapente.pro.": "Under the GDPR, you have the right to access, rectify, delete, and port your data. To exercise these rights, please contact us at: contact@parapente.pro.",
+
+        // ── Conditions d'Utilisation Page ──
+        "Conditions d'Utilisation": "Terms of Use",
+        "Règles d'utilisation du site web": "Website usage rules",
+        "Objet": "Purpose",
+        "Les présentes conditions générales ont pour objet de définir les modalités et conditions d'utilisation des services proposés sur le site Parapente.pro.": "These general terms and conditions define the terms and conditions of use of the services offered on the Parapente.pro website.",
+        "Accès au site": "Site Access",
+        "Le site est accessible gratuitement à tout utilisateur disposant d'un accès à internet. L'éditeur se réserve le droit de suspendre ou modifier l'accès sans préavis.": "The site is freely accessible to any user with internet access. The publisher reserves the right to suspend or modify access without notice.",
+        "Les marques, logos, signes et tout autre contenu du site font l'objet d'une protection par le Code de la propriété intellectuelle.": "Brands, logos, signs, and all other site content are protected by the Intellectual Property Code.",
+        "Responsabilité": "Liability",
+        "L'éditeur du site ne saurait être tenu responsable des erreurs, omissions, ou d'une absence de disponibilité des informations et services.": "The site publisher cannot be held liable for errors, omissions, or unavailability of information and services.",
+        "Liens externes": "External Links",
+        "Le site peut contenir des liens hypertextes vers d'autres sites. L'éditeur ne prend aucun engagement concernant ces autres sites auxquels vous pourriez avoir accès.": "The site may contain hyperlinks to other websites. The publisher makes no commitments regarding these other sites you may access.",
+        "Droit applicable": "Applicable Law",
+        "La législation française s'applique au présent contrat. En cas d'absence de résolution amiable d'un litige né entre les parties, les tribunaux français seront seuls compétents.": "French law applies to this contract. In the absence of amicable resolution of a dispute between the parties, French courts shall have sole jurisdiction.",
+
+        // ── Calendar JS strings ──
+        "Toutes": "All",
+        "Loisir": "Leisure",
+        "Grille": "Grid",
+        "Liste": "List",
+        "Aucune formation trouvée pour ce filtre.": "No courses found for this filter.",
+        "Places dispo": "Available",
+        "Presque complet": "Almost full",
+        "Complet": "Full",
+        "S\u2019inscrire en liste d\u2019attente": "Join waiting list",
+        "Dates :": "Dates:",
+        "Niveau requis :": "Required level:",
+        "Disponibilité :": "Availability:",
+        "* Des aides au financement peuvent être possibles (AFDAS, etc.) selon votre statut.": "* Funding assistance may be available (AFDAS, etc.) depending on your status.",
+        "Contactez-nous": "Contact us"
     },
     es: {
+        // ── Navigation ──
         "Accueil": "Inicio",
         "L'École (APPI)": "La Escuela (APPI)",
         "Formations": "Cursos",
@@ -204,59 +353,206 @@ const I18N_DICT = {
         "Calendrier": "Calendario",
         "Tarifs": "Tarifas",
         "Contact": "Contacto",
-        "Découvrir nos formations": "Descubrir nuestros cursos",
-        "Voir l'Espace PRO": "Ver Espacio PRO",
-        "En savoir plus": "Saber más",
-        "Espace dédié": "Espacio dedicado",
-        "Voir les dates": "Ver fechas",
-        "Voir les tarifs": "Ver tarifas",
-        "Réserver": "Reservar",
-        "Réserver ce stage": "Reservar este curso",
-        "Candidater": "Solicitar",
-        "Nous contacter": "Contáctanos",
-        "Envoyer le message": "Enviar mensaje",
+        "École &amp; Progression APPI": "Escuela &amp; Progresión APPI",
+
+        // ── Index — Hero ──
         "Volez plus haut,<br>volez plus loin": "Vuela más alto,<br>vuela más lejos",
         "École de parapente professionnelle. De l'initiation aux brevets instructeurs, découvrez la progression APPI avec des experts passionnés.": "Escuela profesional de parapente. Desde la iniciación hasta las certificaciones de instructor, descubre la progresión APPI con expertos apasionados.",
+        "Découvrir nos formations": "Descubrir nuestros cursos",
+        "Voir l'Espace PRO": "Ver Espacio PRO",
+
+        // ── Index — Quick Access ──
         "Accès Rapide": "Acceso Rápido",
-        "Formations & Stages": "Cursos y Etapas",
+        "Formations & Stages": "Cursos y Prácticas",
+        "Formations &amp; Stages": "Cursos y Prácticas",
         "Biplace, stages cross, SIV, voyages et coaching. Tout pour progresser à votre rythme.": "Vuelos biplaza, cursos XC, SIV, viajes y coaching. Todo para progresar a tu ritmo.",
+        "En savoir plus": "Saber más",
+        "Espace dédié": "Espacio dedicado",
         "Filière instructeurs, biplaces commerciaux et formations professionnelles qualifiantes.": "Formación de instructores, biplaza comercial y formación profesional.",
         "Consultez toutes les dates de nos prochains stages, séjours et formations professionnelles.": "Consulta todas las fechas de nuestros próximos cursos, viajes y formaciones.",
+        "Voir les dates": "Ver fechas",
         "Consultez notre grille tarifaire pour le grand public et les professionnels.": "Consulta nuestras tarifas para particulares y profesionales.",
+        "Voir les tarifs": "Ver tarifas",
+
+        // ── Formations Page ──
         "Nos Formations": "Nuestros Cursos",
         "Pour les pilotes en quête de progression, de l'initiation au vol de distance.": "Para pilotos en busca de progresión, desde la iniciación hasta el vuelo de distancia.",
         "Biplace — Non commercial": "Biplaza — No comercial",
         "Formation pour apprendre à voler en biplace dans un cadre associatif ou familial. Partagez votre passion en toute sécurité avec vos proches.": "Formación para aprender a volar en biplaza en un entorno de club o familiar. Comparte tu pasión de forma segura con tus seres queridos.",
+        "Réserver": "Reservar",
+        "Réserver ce stage": "Reservar este curso",
         "Stage Cross": "Curso XC Cross",
         "Apprenez à exploiter les ascendances thermiques, à transiter et à préparer vos vols de distance. Idéal pour valider le niveau Advanced Pilot.": "Aprende a aprovechar las térmicas, hacer transiciones y preparar tus vuelos de distancia. Ideal para validar el nivel Advanced Pilot.",
         "Stage SIV (Simulation d'Incidents de Vol)": "Curso SIV (Incidencias de Vuelo)",
         "Maîtrisez votre voile dans toutes les configurations : fermetures, autorotation, décrochage. Indispensable pour votre sécurité active.": "Domina tu vela en todas las configuraciones: colapsos, autorrotación, pérdidas. Indispensable para tu seguridad activa.",
         "Visio & Théorie": "Teoría Online y Webinars",
+        "Visio &amp; Théorie": "Teoría Online y Webinars",
         "Cours théoriques en visioconférence : météo avancée, lecture des émagrammes, réglementation, préparation mentale.": "Cursos teóricos por videoconferencia: meteorología avanzada, emagramas, normativa y preparación mental.",
         "Voyage à la carte": "Viajes a la carta",
         "Séjours itinérants en France ou à l'étranger. Découvrez de nouveaux sites de vol avec un encadrement professionnel.": "Viajes guiados en Francia o en el extranjero. Descubre nuevos sitios de vuelo con entrenamiento profesional.",
         "Coaching Individuel": "Coaching Individual",
         "Analyse vidéo, débriefing de traces GPS, accompagnement personnalisé pour atteindre vos objectifs spécifiques.": "Análisis de video, debriefing de tracks GPS, acompañamiento personalizado para alcanzar tus objetivos.",
+
+        // ── Tarifs Page ──
         "Nos Tarifs": "Nuestras Tarifas",
         "Des prix transparents pour votre progression APPI, du loisir à la professionnalisation.": "Precios transparentes para tu progresión APPI, desde el ocio hasta la profesionalización.",
         "Tarifs Formations (Loisir)": "Tarifas de Cursos (Ocio)",
         "Tarifs Espace PRO": "Tarifas Espacio PRO",
+        "Stage Initiation (5 jours)": "Curso de Iniciación (5 días)",
+        "Prêt du matériel complet": "Préstamo de material completo",
+        "Carnet de vol APPI": "Libro de vuelo APPI",
+        "Encadrement 2 moniteurs": "Supervisión de 2 monitores",
+        "Stage Perfectionnement": "Curso de Perfeccionamiento",
+        "5 jours de formation": "5 días de formación",
+        "Validation Pilot APPI": "Validación Pilot APPI",
+        "Optimisation thermique": "Optimización térmica",
+        "Stage SIV (3 jours)": "Curso SIV (3 días)",
+        "Bateau + Navette": "Barco + Lanzadera",
+        "Gilet de sauvetage fourni": "Chaleco salvavidas incluido",
+        "Débriefing vidéo inclus": "Debriefing de vídeo incluido",
+        "Formation Professionnelle": "Formación Profesional",
+        "Durée": "Duración",
+        "Tarif": "Precio",
+        "Action": "Acción",
+        "Qualification Biplace Non Commercial": "Cualificación Biplaza No Comercial",
+        "5 jours": "5 días",
+        "Formation Biplace PRO (Commercial)": "Formación Biplaza PRO (Comercial)",
+        "2 semaines": "2 semanas",
+        "Sur devis": "Bajo presupuesto",
+        "Formation Assistant Instructeur APPI": "Formación Asistente de Instructor APPI",
+        "10 jours": "10 días",
+        "Validation Instructeur APPI (Examen)": "Validación Instructor APPI (Examen)",
+        "3 jours": "3 días",
+        "Détails →": "Detalles →",
+
+        // ── Calendrier Page ──
         "Calendrier des Stages": "Calendario de Cursos",
         "Consultez le planning mensuel de nos formations loisir et professionnelles pour la saison 2026.": "Consulta la programación mensual de nuestros cursos de ocio y profesionales para la temporada 2026.",
+
+        // ── Contact Page ──
         "Contactez-nous": "Contáctanos",
         "Une question ? Une réservation ? Notre équipe est à votre écoute.": "¿Una pregunta? ¿Una reserva? Nuestro equipo está a tu disposición.",
         "Nos Coordonnées": "Datos de Contacto",
         "Envoyez-nous un message": "Envíanos un mensaje",
+        "Téléphone / WhatsApp": "Teléfono / WhatsApp",
+        "E-mail": "Correo electrónico",
+        "École (Lieu de RDV)": "Escuela (Punto de encuentro)",
+        "Lieu-dit Le Village<br>04330 Barrême, France": "Lieu-dit Le Village<br>04330 Barrême, Francia",
+        "Nom & Prénom": "Nombre completo",
+        "Nom &amp; Prénom": "Nombre completo",
+        "Sujet / Intérêt": "Asunto / Interés",
+        "Message": "Mensaje",
+        "Envoyer le message": "Enviar mensaje",
+        "Sélectionnez un sujet...": "Seleccione un tema...",
+        "Renseignement - Stage Loisir": "Información - Curso de Ocio",
+        "Inscription - Stage SIV": "Inscripción - Curso SIV",
+        "Candidature - Formation PRO": "Candidatura - Formación PRO",
+        "Autre demande": "Otra solicitud",
+        "✓ Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.": "✓ ¡Mensaje enviado con éxito! Responderemos lo antes posible.",
+        "Nous contacter": "Contáctanos",
+
+        // ── APPI Page ──
         "Le Système Éducatif APPI": "El Sistema Educativo APPI",
         "Une progression internationale, standardisée et sécurisée.": "Una progresión internacional, estandarizada y segura.",
+        "Qu'est-ce que la formation APPI ?": "¿Qué es la formación APPI?",
+        "APPI (Association of Paragliding Pilots and Instructors) est une organisation internationale qui propose un système de certification et d'enseignement standardisé pour le vol libre.": "APPI (Association of Paragliding Pilots and Instructors) es una organización internacional que ofrece un sistema de certificación y enseñanza estandarizado para el vuelo libre.",
+        "Ce cursus garantit que le pilote acquiert des compétences solides, tant théoriques que pratiques, à chaque étape de sa progression. Ces certifications sont reconnues dans le monde entier, facilitant la location de matériel ou la pratique à l'étranger.": "Este plan de estudios garantiza que el piloto adquiera habilidades sólidas, tanto teóricas como prácticas, en cada etapa de su progresión. Estas certificaciones son reconocidas en todo el mundo, facilitando el alquiler de material o la práctica en el extranjero.",
+        "Les Niveaux de Progression": "Niveles de Progresión",
+        "Initiation, découverte du matériel, gonflage et premiers grands vols encadrés par radio.": "Iniciación, descubrimiento del material, inflado y primeros grandes vuelos supervisados por radio.",
+        "L'autonomie sur site connu. Vous validez vos connaissances théoriques, l'analyse météo et les approches.": "Autonomía en sitio conocido. Validas tus conocimientos teóricos, análisis meteorológico y aproximaciones.",
+        "Vol de distance (Cross), exploitation des thermiques, maîtrise des techniques de descente rapide (SIV).": "Vuelo de distancia (Cross), aprovechamiento de térmicas, dominio de técnicas de descenso rápido (SIV).",
+        "Voir nos Formations": "Ver nuestros Cursos",
+
+        // ── PRO Page ──
         "Espace Professionnel": "Espacio Profesional",
         "Faites de votre passion un métier avec nos formations qualifiantes APPI.": "Haz de tu pasión tu profesión con nuestros cursos cualificados APPI.",
         "Formations Biplace": "Formación Biplaza",
+        "Biplace — Non Commercial": "Biplaza — No Comercial",
+        "Prérequis pour accéder à la filière pro. Apprenez à emmener vos proches en toute sécurité dans un cadre associatif.": "Prerrequisito para acceder a la vía profesional. Aprende a llevar a tus seres queridos de forma segura en un entorno asociativo.",
+        "Biplace — PRO (Commercial)": "Biplaza — PRO (Comercial)",
+        "Formation APPI Tandem Pro. Destinée aux pilotes souhaitant exercer l'activité de pilote biplaceur contre rémunération.": "Formación APPI Tándem Pro. Destinada a pilotos que desean ejercer como piloto biplaza de forma remunerada.",
         "Filière Instructeur APPI": "Curso de Instructor APPI",
+        "Assistant Instructeur": "Asistente de Instructor",
+        "Première étape vers l'enseignement. Apprenez à encadrer au sol et assister un instructeur certifié lors des cours théoriques et pratiques.": "Primer paso hacia la enseñanza. Aprende a supervisar en tierra y asistir a un instructor certificado durante los cursos teóricos y prácticos.",
+        "Candidater": "Solicitar",
+        "Instructeur APPI": "Instructor APPI",
+        "Devenez un professionnel de l'enseignement du vol libre. Formez les futurs pilotes jusqu'au niveau Advanced Pilot de manière autonome.": "Conviértete en un profesional de la enseñanza del vuelo libre. Forma a futuros pilotos hasta el nivel Advanced Pilot de forma autónoma.",
         "Nous rejoindre": "Únete a nosotros",
+        "Vous souhaitez intégrer notre équipe pédagogique ou vous inscrire à une formation qualifiante ? Contactez-nous pour étudier votre dossier et valider vos acquis.": "¿Deseas unirte a nuestro equipo pedagógico o inscribirte en una formación cualificante? Contáctanos para estudiar tu expediente y validar tus logros.",
+        "Contact & Candidature PRO": "Contacto y Candidatura PRO",
+        "Contact &amp; Candidature PRO": "Contacto y Candidatura PRO",
+
+        // ── Footer ──
+        "École de parapente certifiée APPI.<br>Barrême, France.": "Escuela de parapente certificada APPI.<br>Barrême, Francia.",
         "Liens utiles": "Enlaces útiles",
-        "Pratique": "Práctica",
-        "Contact & Accès": "Contacto y Acceso"
+        "Le Système APPI": "El Sistema APPI",
+        "Pratique": "Práctico",
+        "Contact & Accès": "Contacto y Acceso",
+        "Contact &amp; Accès": "Contacto y Acceso",
+        "Informations légales": "Información legal",
+        "Mentions légales": "Aviso legal",
+        "Politique de confidentialité": "Política de privacidad",
+        "Conditions d'utilisation": "Condiciones de uso",
+        "© 2026 Parapente.pro. Tous droits réservés.": "© 2026 Parapente.pro. Todos los derechos reservados.",
+
+        // ── Mentions Légales Page ──
+        "Informations juridiques obligatoires": "Información jurídica obligatoria",
+        "Éditeur du site": "Editor del sitio",
+        "Le site Parapente.pro est édité par Parapente.pro, situé à Barrême, France.": "El sitio Parapente.pro está editado por Parapente.pro, ubicado en Barrême, Francia.",
+        "Responsable de publication": "Responsable de publicación",
+        "[Nom du responsable]": "[Nombre del responsable]",
+        "Hébergeur": "Alojamiento",
+        "Le site est hébergé par GitHub Pages, GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.": "El sitio está alojado en GitHub Pages, GitHub Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.",
+        "Propriété intellectuelle": "Propiedad intelectual",
+        "L'ensemble du contenu (textes, images, vidéos, etc.) de ce site est protégé par le droit d'auteur. Toute reproduction est interdite sans autorisation préalable.": "Todo el contenido (textos, imágenes, vídeos, etc.) de este sitio está protegido por derechos de autor. Queda prohibida su reproducción sin autorización previa.",
+        "Crédits photos": "Créditos fotográficos",
+        "Images : Parapente.pro, ou libres de droits sauf mention contraire.": "Imágenes: Parapente.pro, o libres de derechos salvo mención contraria.",
+
+        // ── Politique de Confidentialité Page ──
+        "Protection de vos données personnelles (RGPD)": "Protección de sus datos personales (RGPD)",
+        "Responsable du traitement des données": "Responsable del tratamiento de datos",
+        "Le responsable du traitement des données est Parapente.pro, joignable à l'adresse email suivante : contact@parapente.pro.": "El responsable del tratamiento de datos es Parapente.pro, disponible en la siguiente dirección de correo: contact@parapente.pro.",
+        "Types de données collectées": "Tipos de datos recopilados",
+        "Lors de l'utilisation de notre formulaire de contact, nous collectons les données suivantes : nom, email, téléphone, et le contenu de votre message.": "Al utilizar nuestro formulario de contacto, recopilamos los siguientes datos: nombre, email, teléfono y el contenido de su mensaje.",
+        "Finalité du traitement": "Finalidad del tratamiento",
+        "Ces données sont utilisées uniquement dans le but de répondre à vos demandes de renseignements, inscriptions ou toute autre communication initiée par vos soins.": "Estos datos se utilizan únicamente para responder a sus solicitudes de información, inscripciones o cualquier otra comunicación iniciada por usted.",
+        "Durée de conservation": "Período de conservación",
+        "Les données personnelles sont conservées le temps nécessaire au traitement de votre demande, puis sont supprimées conformément aux obligations légales (maximum 3 ans d'inactivité).": "Los datos personales se conservan el tiempo necesario para el tratamiento de su solicitud y se eliminan conforme a las obligaciones legales (máximo 3 años de inactividad).",
+        "Cookies et traceurs": "Cookies y rastreadores",
+        "Ce site utilise Google Fonts pour l'affichage de ses typographies, ce qui peut entraîner le dépôt de cookies tiers ou la collecte de votre adresse IP par Google.": "Este sitio utiliza Google Fonts para la visualización de tipografías, lo que puede implicar la instalación de cookies de terceros o la recopilación de su dirección IP por parte de Google.",
+        "Droits des utilisateurs": "Derechos de los usuarios",
+        "Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données. Pour exercer ces droits, veuillez nous contacter à l'adresse : contact@parapente.pro.": "Conforme al RGPD, usted dispone del derecho de acceso, rectificación, supresión y portabilidad de sus datos. Para ejercer estos derechos, contacte con nosotros en: contact@parapente.pro.",
+
+        // ── Conditions d'Utilisation Page ──
+        "Conditions d'Utilisation": "Condiciones de Uso",
+        "Règles d'utilisation du site web": "Reglas de uso del sitio web",
+        "Objet": "Objeto",
+        "Les présentes conditions générales ont pour objet de définir les modalités et conditions d'utilisation des services proposés sur le site Parapente.pro.": "Las presentes condiciones generales tienen por objeto definir las modalidades y condiciones de uso de los servicios ofrecidos en el sitio Parapente.pro.",
+        "Accès au site": "Acceso al sitio",
+        "Le site est accessible gratuitement à tout utilisateur disposant d'un accès à internet. L'éditeur se réserve le droit de suspendre ou modifier l'accès sans préavis.": "El sitio es accesible gratuitamente para cualquier usuario con acceso a internet. El editor se reserva el derecho de suspender o modificar el acceso sin previo aviso.",
+        "Les marques, logos, signes et tout autre contenu du site font l'objet d'une protection par le Code de la propriété intellectuelle.": "Las marcas, logotipos, signos y demás contenido del sitio están protegidos por el Código de propiedad intelectual.",
+        "Responsabilité": "Responsabilidad",
+        "L'éditeur du site ne saurait être tenu responsable des erreurs, omissions, ou d'une absence de disponibilité des informations et services.": "El editor del sitio no será responsable de los errores, omisiones o falta de disponibilidad de la información y los servicios.",
+        "Liens externes": "Enlaces externos",
+        "Le site peut contenir des liens hypertextes vers d'autres sites. L'éditeur ne prend aucun compromiso concernant ces autres sites auxquels vous pourriez avoir accès.": "El sitio puede contener enlaces a otros sitios web. El editor no asume compromiso alguno respecto a estos otros sitios a los que usted podría acceder.",
+        "Droit applicable": "Derecho aplicable",
+        "La législation française s'applique au présent contrat. En cas d'absence de résolution amiable d'un litige né entre les parties, les tribunaux français seront seuls compétents.": "La legislación francesa se aplica al presente contrato. En caso de ausencia de resolución amigable de un litigio entre las partes, los tribunales franceses serán los únicos competentes.",
+
+        // ── Calendar JS strings ──
+        "Toutes": "Todas",
+        "Loisir": "Ocio",
+        "Grille": "Cuadrícula",
+        "Liste": "Lista",
+        "Aucune formation trouvée pour ce filtre.": "No se encontraron cursos para este filtro.",
+        "Places dispo": "Plazas disponibles",
+        "Presque complet": "Casi completo",
+        "Complet": "Completo",
+        "S\u2019inscrire en liste d\u2019attente": "Inscribirse en lista de espera",
+        "Dates :": "Fechas:",
+        "Niveau requis :": "Nivel requerido:",
+        "Disponibilité :": "Disponibilidad:",
+        "* Des aides au financement peuvent être possibles (AFDAS, etc.) selon votre statut.": "* Pueden existir ayudas de financiación (AFDAS, etc.) según su situación.",
+        "Contactez-nous": "Contáctanos"
     }
 };
 
@@ -338,12 +634,27 @@ function initLanguageSelector() {
 
     function applyTranslation(lang) {
         const dict = I18N_DICT[lang];
-        const frDict = I18N_DICT['en']; // fallback reference
 
-        // Walk all text nodes and elements to replace matching French strings
-        const textElements = document.querySelectorAll('h1, h2, h3, h4, p, a, span, button, th, td, label');
+        // Walk ALL text-bearing elements
+        const textElements = document.querySelectorAll('h1, h2, h3, h4, p, a, span, button, th, td, label, li, option, div.footer-bottom, div.nav-brand-sub, div.nav-brand-text');
 
         textElements.forEach(el => {
+            // Skip elements that contain other translatable children (avoid double-translating)
+            if (el.tagName === 'LI' && el.querySelector('a')) return;
+            if (el.tagName === 'P' && el.querySelector('strong')) {
+                // Handle compound paragraphs (e.g. footer with <strong>WhatsApp :</strong>)
+                if (!el.dataset.origText) {
+                    el.dataset.origText = el.innerHTML.trim();
+                }
+                const orig = el.dataset.origText;
+                if (lang === 'fr') {
+                    el.innerHTML = orig;
+                } else if (dict && dict[orig]) {
+                    el.innerHTML = dict[orig];
+                }
+                return;
+            }
+
             // Save original French text in dataset if not present
             if (!el.dataset.origText) {
                 el.dataset.origText = el.innerHTML.trim();
@@ -356,11 +667,37 @@ function initLanguageSelector() {
             } else if (dict && dict[orig]) {
                 el.innerHTML = dict[orig];
             } else {
-                // Try plain text match
+                // Try plain text match (strip HTML tags)
                 const plainOrig = orig.replace(/<[^>]*>/g, '').trim();
                 if (dict && dict[plainOrig]) {
                     el.textContent = dict[plainOrig];
                 }
+            }
+        });
+
+        // Translate placeholder attributes on inputs and textareas
+        const placeholderDict = {
+            en: {
+                "Votre nom": "Your name",
+                "votre@email.com": "your@email.com",
+                "Détaillez votre demande (niveau actuel, dates souhaitées...)": "Details about your request (current level, desired dates...)"
+            },
+            es: {
+                "Votre nom": "Tu nombre",
+                "votre@email.com": "tu@email.com",
+                "Détaillez votre demande (niveau actuel, dates souhaitées...)": "Detalla tu solicitud (nivel actual, fechas deseadas...)"
+            }
+        };
+
+        document.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(input => {
+            if (!input.dataset.origPlaceholder) {
+                input.dataset.origPlaceholder = input.getAttribute('placeholder');
+            }
+            const origPh = input.dataset.origPlaceholder;
+            if (lang === 'fr') {
+                input.setAttribute('placeholder', origPh);
+            } else if (placeholderDict[lang] && placeholderDict[lang][origPh]) {
+                input.setAttribute('placeholder', placeholderDict[lang][origPh]);
             }
         });
     }

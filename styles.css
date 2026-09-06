@@ -1373,14 +1373,14 @@ textarea.form-control {
 /* ── APPI Page Components (Pillars, Master Highlight & Badges) ── */
 .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin: 40px 0;
 }
 .pillar-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    padding: 32px 24px;
+    padding: 28px 20px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -1393,29 +1393,43 @@ textarea.form-control {
     box-shadow: var(--shadow-md);
 }
 .pillar-icon {
-    width: 60px;
-    height: 60px;
+    width: 52px;
+    height: 52px;
     display: flex;
     align-items: center;
     justify-content: center;
     background: var(--bg-base);
     border: 2px solid var(--border);
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: var(--brand-orange);
 }
 .pillar-title {
     font-family: var(--font-heading);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: var(--dark-grey);
     text-transform: uppercase;
     margin-bottom: 12px;
-    letter-spacing: 0.03em;
+    letter-spacing: 0.02em;
+    line-height: 1.25;
 }
 .pillar-desc {
     color: var(--text-muted);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     line-height: 1.6;
+}
+
+@media (max-width: 1050px) {
+    .pillars-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Master Spotlight Card */
